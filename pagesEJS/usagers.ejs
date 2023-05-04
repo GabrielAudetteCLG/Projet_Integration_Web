@@ -1,0 +1,19 @@
+<%- include ('./partiels/erreurs_msg') %>
+<main class="menu-main">
+  <div class="card" style="width: 28rem">
+    <div class="card-body text-center">
+      <div class="user-wrapper">
+        <img src="/images/<%=user.fichierImage%>" alt="avatar" class="avatar" />
+        <%= user.nom %> (<%= user.login%>)
+      </div>
+      <h4 class="card-title">Gestion des usagers</h4>
+      <a href="/usagers/ajouter" class="btn btn-primary col-12"
+        >Enregistrer un nouvel usager</a
+      >
+      <a href="/usagers/menu" class="btn btn-primary col-12"
+        >Afficher tous les usagers</a
+      >
+      <a href="/menu" class="btn btn-secondary col-12">Retour au menu</a>
+    </div>
+  </div>
+</main>

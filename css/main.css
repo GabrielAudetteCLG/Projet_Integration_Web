@@ -1,0 +1,76 @@
+body {
+  background-color: black;
+  color: white;
+}
+.erreurs {
+  color: red;
+}
+.listeUsagers p {
+  margin-left: 2em;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-group {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+::placeholder {
+  text-align: center;
+}
+.form-group input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px 0 10px 0;
+  border-radius: 15px;
+  border: none;
+  text-align: center;
+}
+.form-group input:focus {
+  outline: none;
+}
+.login-button {
+  background-color: #0d6efd;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+.login-button:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: #0b5ed7;
+}
+.btn {
+  margin: 10px 0 10px 0;
+}
+.menu-main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-wrapper {
+  margin: 10px 0 10px 0;
+}
+.form-wrapper {
+  width: 35%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.checkbox-wrapper {
+  text-align: start;
+}
+.table {
+  color: white;
+}

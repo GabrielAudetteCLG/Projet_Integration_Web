@@ -1,0 +1,19 @@
+<body
+  class="text-center"
+  style="display: flex; align-items: center; height: 100vh"
+>
+  <main class="form-signin">
+    <%- include ('./partiels/erreurs_msg') %>
+    <h1>Connectez vous</h1>
+    <form action="/usagers/login" method="POST" class="form-group">
+      <input type="text" name="login" id="login" placeholder="Courriel" />
+      <input
+        type="password"
+        name="password"
+        id="pwd"
+        placeholder="Mot de passe"
+      />
+      <input type="submit" value="Confirmer" class="login-button" />
+    </form>
+  </main>
+</body>

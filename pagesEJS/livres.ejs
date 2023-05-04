@@ -1,0 +1,59 @@
+<% let admin = user.role.includes('admin'); %>
+<body class="text-center">
+  <h1>Page livres</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-image">
+          <thead>
+            <% livres.forEach(function(livre) { %>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Auteur</th>
+              <th scope="col">Éditeur</th>
+              <th scope="col">Langue</th>
+              <th scope="col">ISBN</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Description</th>
+              <th scope="col">Nombre de pages</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="w-25">
+                <img
+                  src="<%=livre.image%>"
+                  class="img-fluid img-thumbnail"
+                  alt="Image livre"
+                />
+              </td>
+              <th scope="row"><%= livre.titre %></th>
+              <td><%= livre.auteur %></td>
+              <td><%= livre.editeur %></td>
+              <td><%= livre.langue %></td>
+              <td><%= livre.isbn %></td>
+              <td><%= livre.prix %></td>
+              <td><%= livre.description %></td>
+              <td><%= livre.nbPage %></td>
+              <td>
+                <% if (admin) { %>
+                <a
+                  href="/livres/supprimer/<%= livre._id %>"
+                  onclick="return confirm('Etes-vous certain de vouloir supprimer ce livre?');"
+                  ><i class="fa fa-trash"></i
+                ></a>
+                <a href="/livres/editer/<%= livre.isbn %>"
+                  ><i class="fa fa-pencil-alt fa-fw"></i
+                ></a>
+
+                <% } %>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>

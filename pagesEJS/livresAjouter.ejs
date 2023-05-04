@@ -1,0 +1,107 @@
+<%- include ('./partiels/erreurs_msg') %>
+<h1 class="text-center">Ajouter un livre</h1>
+<form action="/livres/ajouter" method="POST" enctype="multipart/form-data">
+  <div class="form-wrapper">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input
+        type="text"
+        name="titre"
+        id="titre"
+        value="<%= typeof titre != 'undefined' ? titre : '' %>"
+        placeholder="Entrez le titre du livre"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="auteur">Auteur</label>
+      <input
+        type="text"
+        class="form-control"
+        id="auteur"
+        name="auteur"
+        placeholder="Auteur du livre"
+        value="<%= typeof auteur != 'undefined' ? auteur : '' %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="editeur">Editeur</label>
+      <input
+        type="text"
+        class="form-control"
+        id="editeur"
+        name="editeur"
+        placeholder="Maison d'édition"
+        value="<%= typeof livreediteur != 'undefined' ? livreediteur : '' %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="langue">Langue</label>
+      <input
+        type="text"
+        class="form-control"
+        id="langue"
+        name="langue"
+        placeholder="Langue du livre"
+        value="<%= typeof langue != 'undefined' ? langue : '' %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="isbn">ISBN</label>
+      <input
+        type="text"
+        class="form-control"
+        id="isbn"
+        name="isbn"
+        placeholder="ISBN du livre"
+        value="<%= typeof isbn != 'undefined' ? isbn : '' %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="prix">Prix</label>
+      <input
+        type="number"
+        class="form-control"
+        id="prix"
+        name="prix"
+        placeholder="Prix du livre"
+        value="<%= typeof prix != 'undefined' ? prix : '' %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        type="text"
+        class="form-control"
+        id="description"
+        name="description"
+        placeholder="description"
+      >
+      <%= typeof description != 'undefined' ? description : '' %>
+      </textarea>
+    </div>
+    <div class="form-group">
+      <label for="nbPage">Nombre de pages</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nbPage"
+        name="nbPage"
+        placeholder="nbPage"
+        value="<%= typeof nbPage != 'undefined' ? nbPage : '' %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="image">Image</label>
+      <input
+        type="text"
+        name="image"
+        id="image"
+        value="<%= typeof image != 'undefined' ? image : '' %>"
+        placeholder="Url de l'image du livre"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter un livre</button>
+  </div>
+</form>
