@@ -8,6 +8,41 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const multer = require("multer");
 const upload = multer({ dest: "./uploads/" });
+const { Configuration, OpenAIApi } = require('openai');
+
+// Configurez OpenAI avec votre clé API directement dans le code
+const configuration = new Configuration({
+  apiKey: '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',
+});
+const openaiApi = new OpenAIApi(configuration);
+
+// Middleware pour servir les fichiers statiques
+app.use(express.static('public'));
+
+// Route pour gérer les requêtes de chatbot
+app.post('/chatbot', express.json(), async (req, res) => {
+  const userInput = req.body.message;
+ // console.log(userInput)
+
+  try {
+    // Utilisez la nouvelle configuration et le modèle gpt-3.5-turbo
+    const response = await openaiApi.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        { role: 'user', content: userInput },
+      ],
+    });
+
+    const chatbotReply = response.data.choices[0].message.content.trim();
+   // console.log(chatbotReply)
+    res.json({ message: chatbotReply });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur lors de la communication avec OpenAI' });
+  }
+});
+
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
