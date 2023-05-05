@@ -83,6 +83,7 @@ body {
   right: 20px;
   cursor: pointer;
   z-index: 1000;
+  color:76b900;
 }
 
 .chatbot-container {
@@ -92,7 +93,7 @@ body {
   width: 300px;
   height: 400px;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #76b900;
   border-radius: 10px 10px 0 0;
   display: none;
   flex-direction: column;
@@ -100,7 +101,7 @@ body {
 }
 
 .chatbot-header {
-  background-color: #007bff;
+  background-color: #76b900;
   color: white;
   padding: 10px;
   border-radius: 10px 10px 0 0;
@@ -114,7 +115,7 @@ body {
 
 .chatbot-message-sent {
   color: white;
-  background-color: #007bff;
+  background-color: #76b900;
   padding: 8px 12px;
   border-radius: 12px;
   display: inline-block;
@@ -147,7 +148,7 @@ body {
 
 .chatbot-input-container button {
   margin-left: 10px;
-  background-color: #007bff;
+  background-color: #76b900;
   color: white;
   border: none;
   border-radius: 5px;
