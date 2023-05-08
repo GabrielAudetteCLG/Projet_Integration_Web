@@ -9,6 +9,7 @@ const session = require("express-session");
 const multer = require("multer");
 const upload = multer({ dest: "./uploads/" });
 const { Configuration, OpenAIApi } = require('openai');
+//test evan branch
 
 // Configurez OpenAI avec votre clé API directement dans le code
 const configuration = new Configuration({
