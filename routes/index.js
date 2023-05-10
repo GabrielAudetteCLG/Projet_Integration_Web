@@ -10,10 +10,17 @@ router.get("/index", (requete, res) => res.redirect("/usagers/login"));
 router.get("/usagers/login", (requete, reponse) =>
   reponse.render("login", { titre: "Login" })
 );
-router.get("/index", (requete, res) => res.redirect("/menu"));
+router.get("/index", (requete, res) => res.redirect("/boutique"));
 router.get("/menu", (requete, reponse) =>
   reponse.render("menu", { titre: "Menu" })
 );
+router.get("/boutique", (requete, reponse) =>
+  reponse.render("boutique", { titre: "Boutique" })
+);
+//Get accueil
+router.get("/accueil", (requete, reponse) => {
+  reponse.render("accueil", { titre: "Accueil" });
+});
 
 // Get du logout (déconnexion)
 router.get("/logout", (requete, reponse, next) => {

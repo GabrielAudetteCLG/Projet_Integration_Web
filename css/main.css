@@ -1,6 +1,7 @@
 body {
   background-color: black;
   color: white;
+  max-width: 100%;
 }
 .erreurs {
   color: red;
@@ -83,7 +84,7 @@ body {
   right: 20px;
   cursor: pointer;
   z-index: 1000;
-  color:76b900;
+  color: 76b900;
 }
 
 .chatbot-container {
@@ -136,7 +137,7 @@ body {
 .chatbot-input-container {
   display: flex;
   padding: 10px;
-  align-items: stretch; 
+  align-items: stretch;
 }
 
 .chatbot-input-container input {
@@ -154,7 +155,49 @@ body {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  align-self: stretch; 
-  display: flex; 
-  align-items: center; 
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+.userAccountIcon {
+  width: 0px;
+  height: 0px;
+  color: white;
+}
+.container-fluid {
+  width: 75%;
+}
+.btn-icon {
+  border: none;
+}
+.accueil-main {
+  background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
+.boutique-main {
+  background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  margin: 0 100px 0 100px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-toggle {
+  background: transparent;
+  border: none;
 }

@@ -19,7 +19,7 @@ router.get("/", estAuthentifie, (requete, reponse) => {
 // Route si on se connecte, redirect vers menu (option gestion usagers / gestion livres)
 router.post("/login", (req, rep, next) => {
   passport.authenticate("local", {
-    successRedirect: "../menu",
+    successRedirect: "../boutique",
     failureRedirect: "/",
     failureFlash: true,
   })(req, rep, next);
