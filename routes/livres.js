@@ -22,6 +22,18 @@ router.get("/menu", estAuthentifie, (requete, res) => {
     })
     .catch((err) => console.log(err));
 });
+router.get("/boutique", estAuthentifie, (requete, res) => {
+  Livres.find({}, null, { sort: { titre: 1 } })
+    .exec()
+    .then((livres) => {
+      res.render("livres", {
+        livres: livres,
+        user: requete.user,
+        titre: "Liste des livres",
+      });
+    })
+    .catch((err) => console.log(err));
+});
 
 // Route get modifier un livre (isbn passée en paramètre)
 router.get("/editer/:isbn", estGestion, (requete, reponse) => {
