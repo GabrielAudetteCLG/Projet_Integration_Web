@@ -3,30 +3,17 @@
 <form action="/usagers/ajouter" method="POST" enctype="multipart/form-data">
   <div class="form-wrapper">
     <div class="form-group">
-      <label for="login">Login</label>
       <input
         type="email"
         class="form-control"
         name="login"
         id="login"
         aria-describedby="emailHelp"
-        placeholder="Entrez le login"
+        placeholder="Login"
         value="<%= typeof login != 'undefined' ? login : '' %>"
       />
     </div>
     <div class="form-group">
-      <label for="nom">nom</label>
-      <input
-        type="text"
-        class="form-control"
-        name="nom"
-        id="nom"
-        placeholder="Entrez le nom"
-        value="<%= typeof nom != 'undefined' ? nom : '' %>"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
       <input
         type="password"
         class="form-control"
@@ -35,7 +22,6 @@
         placeholder="Mot de passe"
         value="<%= typeof password != 'undefined' ? password : '' %>"
       />
-      <label for="password2">Confirmez le mot de passe</label>
       <input
         type="password"
         class="form-control"
@@ -45,36 +31,42 @@
         value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
       />
     </div>
-    <div class="checkbox-wrapper">
-      <div class="form-check">
-        <label class="form-check-label" for="normal">Normal</label>
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="normal"
-          checked
-          disabled
-        />
-      </div>
-      <div class="form-check">
-        <label class="form-check-label" for="admin">Admin</label>
-        <input type="checkbox" class="form-check-input" id="admin" name="admin"
-        <%= typeof admin != 'undefined' ? 'checked' : '' %> />
-      </div>
-      <div class="form-check">
-        <label class="form-check-label" for="gestion">Gestion</label>
-        <input type="checkbox" class="form-check-input" id="gestion"
-        name="gestion" <%= typeof gestion != 'undefined' ? 'checked' : '' %> />
+    <div class="form-group">
+      <div>Rôles</div>
+      <div class="checkbox-wrapper">
+        <div class="form-check form-check-inline ">
+          <label class="form-check-label" for="normal">Normal</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="normal"
+            checked
+            disabled
+          />
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label" for="admin">Admin</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="admin"
+            name="admin"
+            <%= typeof admin != 'undefined' ? 'checked' : '' %>
+          />
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label" for="gestion">Gestion</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="gestion"
+            name="gestion"
+            <%= typeof gestion != 'undefined' ? 'checked' : '' %>
+          />
+        </div>
       </div>
     </div>
-    <label for="fichier">Téléverser votre image: </label>
-    <input
-      type="file"
-      name="fichier"
-      id="fichier"
-      class="form-control"
-      required
-    />
-    <button type="submit" class="btn btn-primary">Ajouter l'utilisateur</button>
+    <button type="submit" class="btn btn-success">Ajouter l'usager</button>
   </div>
 </form>
+

@@ -12,7 +12,7 @@ const { Configuration, OpenAIApi } = require('openai');
 
 // Configurez OpenAI avec votre clé API directement dans le code
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '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',
 });
 const openaiApi = new OpenAIApi(configuration);
 
