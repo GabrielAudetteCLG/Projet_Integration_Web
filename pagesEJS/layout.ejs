@@ -28,12 +28,8 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" style="color: white" href="/accueil"
-          >Accueil</a
-        >
-        <a class="navbar-brand fw-bold" style="color: white" href="/boutique"
-          >Boutique</a
-        >
+        <a class="navbar-brand fw-bold" style="color: white" href="/accueil">Accueil</a>
+        <a class="navbar-brand fw-bold" style="color: white" href="/boutique">Boutique</a>
         <div class="dropdown">
           <button
             class="dropdown-toggle"
@@ -50,9 +46,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/usagers/profil">Mon profil</a>
             <a class="dropdown-item" href="/usagers/commandes">Mes commandes</a>
-            <a class="dropdown-item" href="/usagers/deconnexion"
-              >Se déconnecter</a
-            >
+            <a class="dropdown-item" href="/usagers/deconnexion">Se déconnecter</a>
           </div>
         </div>
       </div>
@@ -85,7 +79,20 @@
         </div>
       </div>
     </div>
-
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbarLinks = document.querySelectorAll(".navbar-brand");
+        const currentPath = window.location.pathname;
+    
+        navbarLinks.forEach((link) => {
+          if (link.getAttribute("href") === currentPath) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      });
+    </script>
     <script src="../public/script.js"></script>
   </body>
 </html>
