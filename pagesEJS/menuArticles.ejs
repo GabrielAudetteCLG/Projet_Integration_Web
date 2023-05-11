@@ -1,0 +1,12 @@
+<%- include ('./partiels/erreurs_msg') %>
+<main class="menu-main">
+  <div class="card" style="width: 28rem">
+    <div class="card-body text-center">
+      <div class="user-wrapper"><%= user.nom %> (<%= user.login %>)</div>
+      <h4 class="card-title">Gestion des articles</h4>
+      <a href="/articles/ajouter" class="btn btn-primary col-12">Enregistrer un nouvel article</a>
+      <a href="/articles/menu" class="btn btn-primary col-12">Afficher tous les articles</a>
+      <a href="/menu" class="btn btn-secondary col-12">Retour au menu</a>
+    </div>
+  </div>
+</main>

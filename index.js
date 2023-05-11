@@ -102,6 +102,7 @@ app.use("/images", express.static("./images"));
 app.use("/", require("./routes/index"));
 app.use("/usagers", require("./routes/usagers"));
 app.use("/livres", require("./routes/livres"));
+app.use("/articles", require("./routes/articles"));
 
 // Les vues
 app.set("views", "./pagesEJS");
