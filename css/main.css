@@ -244,3 +244,14 @@ body {
 .navbar-brand.active::after {
   visibility: visible;
 }
+
+/* dropdown **/
+
+.dropdown {
+  background-color: #000;
+  border: 1px solid #fff;
+}
+
+.dropdown:hover {
+  background-color: #76b900;
+}
