@@ -203,7 +203,18 @@ body {
   background: transparent;
   border: none;
 }
+.dropdown-menu {
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+.dropdown-menu a:hover {
+  background-color: #76b900;
+}
 
+.dropdown-menu a {
+  color: #ffffff;
+}
 .navbar-brand {
   position: relative;
   padding: 0.5rem 1rem;
@@ -217,7 +228,7 @@ body {
   height: 2px;
   bottom: 3px;
   left: 0;
-  background-color: white;
+  background-color: #76b900;
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out;
@@ -236,11 +247,15 @@ body {
   bottom: 0;
   left: 50%;
   margin-left: -3px; /* Half of the width */
-  background-color: white;
+  background-color: #76b900;
   border-radius: 50%;
   visibility: hidden;
 }
 
 .navbar-brand.active::after {
   visibility: visible;
+}
+
+.active {
+  color: #76b900 !important;
 }
