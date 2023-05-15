@@ -1,0 +1,49 @@
+<% let admin = user.role.includes('admin'); %>
+<body class="text-center">
+  <h1>Page livres</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-image">
+          <thead>
+            <% produits.forEach(function(produit) { %>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Marque</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="w-25">
+                <img
+                  src="<%=produit.image%>"
+                  class="img-fluid img-thumbnail"
+                  alt="Image produit"
+                />
+              </td>
+              <th scope="row"><%= produit.nom %></th>
+              <td><%= produit.prix %></td>
+              <td><%= produit.marque %></td>
+              <td>
+                <% if (admin) { %>
+                <a
+                  href="/livres/supprimer/<%= produit._id %>"
+                  onclick="return confirm('Etes-vous certain de vouloir supprimer ce livre?');"
+                  ><i class="fa fa-trash"></i
+                ></a>
+                <a href="/livres/editer/<%= produit.id %>"
+                  ><i class="fa fa-pencil-alt fa-fw"></i
+                ></a>
+
+                <% } %>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
