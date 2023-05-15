@@ -21,6 +21,10 @@ router.get("/boutique", (requete, reponse) =>
 router.get("/accueil", (requete, reponse) => {
   reponse.render("accueil", { titre: "Accueil" });
 });
+// Get compte
+router.get("/compte", (requete, reponse) => {
+  reponse.render("compte", { titre: "Compte" });
+});
 
 // Get du logout (déconnexion)
 router.get("/logout", (requete, reponse, next) => {
