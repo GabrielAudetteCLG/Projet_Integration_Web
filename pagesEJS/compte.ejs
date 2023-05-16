@@ -1,26 +1,23 @@
 <div class="full-height">
-  <div class="container pt-4 pt-xl-5 pb-xl-5">
+  <div class="container pt-4 pt-xl-5 pb-xl-5 compte_container">
     <div class="row pt-5 pb-5">
       <div class="col" style="text-align: left">
-        <div
-          class="card"
-          style="max-width: 35%; text-align: center; margin: auto"
-        >
-          <div class="card-body" style="text-align: center">
+        <div class="card card_compte">
+          <div class="card-body" style="text-align: center; color: white">
             <h4 class="card-title" style="text-align: center; margin: 30px">
-              Utilisateur
+              <%= user.nom %>
             </h4>
             <h4 class="card-title" style="text-align: center; margin: 30px">
-              Role
+              <%= user.role.length > 1 ? 'Role' : 'Role' %> <% if
+              (user.role.length > 1) { %> (s) <% } %>
             </h4>
             <h4 class="card-title" style="text-align: center; margin: 30px">
-              Admin
+              <% user.role.forEach(function(role) { %>
+              <p><%= role %></p>
+              <% }); %>
             </h4>
             <h4 class="card-title" style="text-align: center; margin: 30px">
-              Login
-            </h4>
-            <h4 class="card-title" style="text-align: center; margin: 30px">
-              Mot de passe
+              <%= user.login %>
             </h4>
           </div>
         </div>

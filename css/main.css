@@ -299,6 +299,13 @@ body {
   height: 100%;
 }
 
+.card_compte {
+  max-width: 35%;
+  text-align: center;
+  margin: auto;
+  background-color: #2d2c38;
+}
+
 /* Card media query when smaller then 768px, width of card is 50% width */
 
 @media screen and (max-width: 768px) {

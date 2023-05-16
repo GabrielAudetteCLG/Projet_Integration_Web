@@ -23,23 +23,26 @@ router.get("/accueil", (requete, reponse) => {
 });
 // Get compte
 router.get("/compte", (requete, reponse) => {
-  reponse.render("compte", { titre: "Compte" });
+  reponse.render("compte", {
+    titre: "Compte",
+    user: requete.user,
+  });
 });
 
 // Get du logout (déconnexion)
-router.get('/deconnexion', (requete, reponse, next) => {
-  requete.logout(((err)=>{
-      if (err) {
-          return next(err);
-      }
-      requete.flash('success_msg', 'Vous êtes déconnecté');
-      reponse.redirect('/');
-  }));
+router.get("/deconnexion", (requete, reponse, next) => {
+  requete.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    requete.flash("success_msg", "Vous êtes déconnecté");
+    reponse.redirect("/");
+  });
 });
 
-
 //-	GET « /usagers/login » pour la page de connexion (authentification)
-router.get('/', (requete, reponse) => 
-    reponse.render('login', {titre: 'Bienvenue '}));
+router.get("/", (requete, reponse) =>
+  reponse.render("login", { titre: "Bienvenue " })
+);
 
 module.exports = router;
