@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="text-center">Checkout Page</h1>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Marque</th>
+              <th scope="col">Quantité</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let sousTotal = 0; %>
+            <% produits.forEach(function(produit) { %>
+              <% sousTotal += produit.prix * produit.quantite; %>
+              <tr>
+                <td class="w-25">
+                  <img
+                    src="<%= produit.image %>"
+                    class="img-fluid img-thumbnail"
+                    alt="Image produit"
+                  />
+                </td>
+                <th scope="row"><%= produit.nom %></th>
+                <td><%= produit.prix %></td>
+                <td><%= produit.marque %></td>
+                <td><%= produit.quantite %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        <div class="text-right">
+          <p>Sous-total: <%= sousTotal.toFixed(2) %> CAD</p>
+          <p>TPS (5%): <%= (sousTotal * 0.05).toFixed(2) %> CAD</p>
+          <p>TVQ (9.975%): <%= (sousTotal * 0.09975).toFixed(2) %> CAD</p>
+          <p>Total: <%= (sousTotal * 1.14975).toFixed(2) %> CAD</p>
+        </div>
+        <div class="text-center">
+          <a href="/cart" class="btn btn-primary">Retour au panier</a>
+          <a href="/payment" class="btn btn-success">Payer</a>
+        </div>
+      </div>
+    </div>
+  </div>
