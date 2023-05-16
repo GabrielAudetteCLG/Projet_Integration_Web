@@ -3,6 +3,16 @@
 <form action="/usagers/ajouter" method="POST" enctype="multipart/form-data">
   <div class="form-wrapper">
     <div class="form-group">
+
+      <input
+        type="text"
+        class="form-control"
+        name="nom"
+        id="nom"
+        aria-describedby="emailHelp"
+        placeholder="nom"
+        value="<%= typeof nom != 'undefined' ? nom : '' %>"
+      />
       <input
         type="email"
         class="form-control"
@@ -35,7 +45,7 @@
       <div>Rôles</div>
       <div class="checkbox-wrapper">
         <div class="form-check form-check-inline ">
-          <label class="form-check-label" for="normal">Normal</label>
+          <label class="form-check-label" for="normal">Client</label>
           <input
             type="checkbox"
             class="form-check-input"
@@ -55,7 +65,7 @@
           />
         </div>
         <div class="form-check form-check-inline">
-          <label class="form-check-label" for="gestion">Gestion</label>
+          <label class="form-check-label" for="gestion">Vendeur</label>
           <input
             type="checkbox"
             class="form-check-input"
