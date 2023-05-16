@@ -1,0 +1,75 @@
+
+<body>
+  <%- include ('./partiels/erreurs_msg') %>
+  
+  <h1 class="text-center">Ajouter un article</h1>
+  
+  <form action="/articles/ajouter" method="POST" enctype="multipart/form-data">
+    <div class="form-wrapper">
+    
+      
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input
+          type="text"
+          name="nom"
+          id="nom"
+          placeholder="Entrez le nom de l'article"
+          class="form-control"
+          required
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="imageFond">Image de fond</label>
+        <input
+          type="text"
+          name="imageFond"
+          id="imageFond"
+          placeholder="Entrez l'URL de l'image de fond"
+          class="form-control"
+          required
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="marque">Marque</label>
+        <input
+          type="text"
+          name="marque"
+          id="marque"
+          placeholder="Entrez la marque de l'article"
+          class="form-control"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="prix">Prix</label>
+        <input
+          type="number"
+          name="prix"
+          id="prix"
+          placeholder="Entrez le prix de l'article"
+          class="form-control"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="details">Détails</label>
+        <textarea
+          name="details"
+          id="details"
+          placeholder="Entrez les détails de l'article"
+          class="form-control"
+        ></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">
+        Ajouter l'article
+      </button>
+    </div>
+  </form>
+  
+  <a href="/menu" class="btn btn-secondary col-2">Retour au menu</a>
+</body>
+
