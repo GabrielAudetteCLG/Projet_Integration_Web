@@ -26,5 +26,109 @@ router.get("/menu", estAuthentifie, (requete, res) => {
 
 
 
+  // Route get modifier un article
+
+// Route pour afficher le formulaire de modification d'un article (ID passé en paramètre)
+router.get("/editer/:id", estGestion, (req, res) => {
+  const id = req.params.id;
+  Articles.findOne({
+    _id: id,
+  })
+    .exec()
+    .then((article) => {
+      res.render("articlesEditer", {
+        titre: "Modifier un article",
+        article,
+      });
+    })
+    .catch((err) => console.log(err));
+});
+
+  
+// Route pour traiter la soumission du formulaire de modification d'un article
+router.post("/editer", estGestion, (req, res) => {
+  const {
+    nom,
+    imageFond,
+    marque,
+    prix,
+    details,
+  } = req.body;
+
+  Articles.findOneAndUpdate(
+    { nom: nom },
+    {
+      nom,
+      imageFond,
+      marque,
+      prix,
+      details,
+    },
+    { new: true }
+  )
+    .then((article) => {
+      req.flash("success_msg", "L'article a été modifié avec succès");
+      res.redirect("/articles/menu");
+    })
+    .catch((err) => console.log(err));
+});
+
+
+
+// Route pour afficher le formulaire d'ajout d'un article
+router.get("/ajouter", estGestion, (req, res) => {
+  res.render("articlesAjouter", { titre: "Ajouter un article" });
+});
+
+// Route pour traiter la soumission du formulaire d'ajout d'un article
+router.post("/ajouter", estGestion, (req, res) => {
+  const {
+    nom,
+    imageFond,
+    marque,
+    prix,
+    details,
+  } = req.body;
+  let errors = [];
+
+  if (
+    !nom ||
+    !imageFond ||
+    !marque ||
+    !prix ||
+    !details
+  ) {
+    errors.push({ msg: "Veuillez remplir tous les champs" });
+  } else {
+    const nouvelArticle = new Articles({
+      _id: new mongoose.Types.ObjectId(),
+      nom,
+      imageFond,
+      marque,
+      prix,
+      details,
+    });
+    nouvelArticle
+      .save()
+      .then((article) => {
+        req.flash("success_msg", "Article ajouté à la base de données");
+        res.redirect("/articles/menu");
+      })
+      .catch((err) => console.log(err));
+  }
+});
+
+// Route pour supprimer un article (ID passé en paramètre)
+router.get("/supprimer/:id", estGestion, (req, res) => {
+  const id = req.params.id;
+  Articles.findByIdAndDelete(id)
+    .then(() => {
+      req.flash("success_msg", "L'article a été supprimé avec succès");
+      res.redirect("/articles/menu");
+    })
+    .catch((err) => console.log(err));
+});
+
+
 
 module.exports = router;
