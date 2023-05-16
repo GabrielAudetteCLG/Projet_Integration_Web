@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Articles = require("../modeles/articles");
 const mongoose = require("mongoose");
-const { estAuthentifie, estGestion } = require("../config/auth");
+const { estAuthentifie, estVendeur } = require("../config/auth");
 
 // Route pour afficher la liste des articles
 router.get("/", estAuthentifie, (req, res) => {
@@ -29,7 +29,7 @@ router.get("/menu", estAuthentifie, (requete, res) => {
   // Route get modifier un article
 
 // Route pour afficher le formulaire de modification d'un article (ID passé en paramètre)
-router.get("/editer/:id", estGestion, (req, res) => {
+router.get("/editer/:id", estVendeur, (req, res) => {
   const id = req.params.id;
   Articles.findOne({
     _id: id,
@@ -46,7 +46,7 @@ router.get("/editer/:id", estGestion, (req, res) => {
 
   
 // Route pour traiter la soumission du formulaire de modification d'un article
-router.post("/editer", estGestion, (req, res) => {
+router.post("/editer", estVendeur, (req, res) => {
   const {
     nom,
     imageFond,
@@ -76,12 +76,12 @@ router.post("/editer", estGestion, (req, res) => {
 
 
 // Route pour afficher le formulaire d'ajout d'un article
-router.get("/ajouter", estGestion, (req, res) => {
+router.get("/ajouter", estVendeur, (req, res) => {
   res.render("articlesAjouter", { titre: "Ajouter un article" });
 });
 
 // Route pour traiter la soumission du formulaire d'ajout d'un article
-router.post("/ajouter", estGestion, (req, res) => {
+router.post("/ajouter", estVendeur, (req, res) => {
   const {
     nom,
     imageFond,
@@ -119,7 +119,7 @@ router.post("/ajouter", estGestion, (req, res) => {
 });
 
 // Route pour supprimer un article (ID passé en paramètre)
-router.get("/supprimer/:id", estGestion, (req, res) => {
+router.get("/supprimer/:id", estVendeur, (req, res) => {
   const id = req.params.id;
   Articles.findByIdAndDelete(id)
     .then(() => {

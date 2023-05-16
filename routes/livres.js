@@ -1,8 +1,8 @@
-const express = require("express");
+/*const express = require("express");
 const router = express.Router();
 const Livres = require("../modeles/livres");
 const mongoose = require("mongoose");
-const { estAuthentifie, estGestion } = require("../config/auth");
+const { estAuthentifie, estVendeur } = require("../config/auth");
 
 // Route get menu livres
 router.get("/", estAuthentifie, (requete, res) => {
@@ -36,7 +36,7 @@ router.get("/boutique", estAuthentifie, (requete, res) => {
 });
 
 // Route get modifier un livre (isbn passée en paramètre)
-router.get("/editer/:isbn", estGestion, (requete, reponse) => {
+router.get("/editer/:isbn", estVendeur, (requete, reponse) => {
   const isbn = requete.params.isbn;
   Livres.findOne({
     isbn: isbn,
@@ -52,7 +52,7 @@ router.get("/editer/:isbn", estGestion, (requete, reponse) => {
 });
 
 // Route post modifier un livre (Réception des données du formulaire)
-router.post("/editer", estGestion, (requete, reponse) => {
+router.post("/editer", estVendeur, (requete, reponse) => {
   const {
     titre,
     auteur,
@@ -88,12 +88,12 @@ router.post("/editer", estGestion, (requete, reponse) => {
 });
 
 // Route get ajouter un livre
-router.get("/ajouter", estGestion, (requete, reponse) => {
+router.get("/ajouter", estVendeur, (requete, reponse) => {
   reponse.render("livresAjouter", { titre: "Ajouter un livre" });
 });
 
 // Route post ajouter un livre (Réception des données du formulaire)
-router.post("/ajouter", estGestion, (requete, reponse) => {
+router.post("/ajouter", estVendeur, (requete, reponse) => {
   const {
     titre,
     auteur,
@@ -143,7 +143,7 @@ router.post("/ajouter", estGestion, (requete, reponse) => {
 });
 
 // route pour supprimer un livre (id passé en paramètre)
-router.get("/supprimer/:id", estGestion, (requete, reponse) => {
+router.get("/supprimer/:id", estVendeur, (requete, reponse) => {
   const id = requete.params.id;
   Livres.findByIdAndDelete(id)
     .then(
@@ -154,3 +154,4 @@ router.get("/supprimer/:id", estGestion, (requete, reponse) => {
 });
 
 module.exports = router;
+*/
