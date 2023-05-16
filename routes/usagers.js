@@ -27,6 +27,7 @@ router.post("/login", (req, rep, next) => {
 
 // Route get liste des usagers
 router.get("/menu", estAuthentifie, (requete, reponse) => {
+  console.log(requete.user);
   Usagers.find({}, null, { sort: { login: 1 } })
     .exec()
     .then((usagers) =>
@@ -150,8 +151,9 @@ router.get("/editer/:id", estAdmin, (requete, reponse) => {
 });
 
 // Route pour modifier un usager (réception des données du formulaire)
-router.post("/editer", estAdmin, (requete, reponse) => {
-  const { login, nom, admin, gestion, id } = requete.body;
+router.post("/editer/:id", estAdmin, (requete, reponse) => {
+  const id = requete.params.id;
+  const { nom, login, password, password2, admin, gestion } = requete.body;
   const { originalname, destination, filename, size, path, mimetype } =
     requete.files[0];
   const maxFileSize = 1024 * 10;
@@ -161,7 +163,6 @@ router.post("/editer", estAdmin, (requete, reponse) => {
     "image/jpeg",
     "image/gif",
     "image/webp",
-    "css",
   ];
   let errors = [];
   let roles = ["normal"];
@@ -177,63 +178,124 @@ router.post("/editer", estAdmin, (requete, reponse) => {
       errors.push({ msg: "Format de fichier non accepté" });
     }
   }
+  if (!nom || !login || !password || !password2) {
+    errors.push({ msg: "Remplir toutes les cases du formulaire" });
+  }
+  if (password !== password2) {
+    errors.push({ msg: "Les mots de passe ne correspondent pas" });
+  }
+  if (password.length < 4) {
+    errors.push({ msg: "Le mot de passe doit avoir au moins 4 caractères" });
+  }
   if (errors.length > 0) {
     supprimerFichier(path);
-    reponse.render("editer", {
-      errors,
-      titre: "Ajout d'un usager",
-      nom,
-      login,
-      password,
-      password2,
-      admin,
-      gestion,
-    });
-  } else {
-    Usagers.findOneAndUpdate(
-      { _id: id },
-      {
-        login,
-        nom,
-        role: roles,
-        fichierImage: conserverFichier(path, filename),
-      },
-      { new: true }
-    )
+    Usagers.findById(id)
+      .exec()
       .then((usager) => {
-        requete.flash("success_msg", "Usager inscrit à la BD!");
-        reponse.redirect("/usagers/menu");
+        reponse.render("editer", {
+          errors,
+          titre: "Modifier un usager",
+          usager,
+          nom,
+          login,
+          password,
+          password2,
+          admin,
+          gestion,
+        });
       })
       .catch((err) => console.log(err));
+  } else {
+    Usagers.findOne({ login: login, _id: { $ne: id } }).then((user) => {
+      if (user) {
+        supprimerFichier(path);
+        errors.push({ msg: "Ce courriel existe déjà" });
+        Usagers.findById(id)
+          .exec()
+          .then((usager) => {
+            reponse.render("editer", {
+              errors,
+              titre: "Modifier un usager",
+              usager,
+              nom,
+              login,
+              password,
+              password2,
+              admin,
+              gestion,
+            });
+          })
+          .catch((err) => console.log(err));
+      } else {
+        Usagers.findById(id)
+          .exec()
+          .then((usager) => {
+            usager.nom = nom;
+            usager.login = login;
+            usager.role = roles;
+            if (password) {
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(password, salt, (err, hash) => {
+                  if (err) throw err;
+                  usager.pwd = hash;
+                  usager.fichierImage = conserverFichier(path, filename);
+                  usager
+                    .save()
+                    .then((usager) => {
+                      requete.flash(
+                        "success_msg",
+                        "Usager modifié avec succès"
+                      );
+                      reponse.redirect("/usagers/menu");
+                    })
+                    .catch((err) => console.log(err));
+                });
+              });
+            } else {
+              usager.fichierImage = conserverFichier(path, filename);
+              usager
+                .save()
+                .then((usager) => {
+                  requete.flash("success_msg", "Usager modifié avec succès");
+                  reponse.redirect("/usagers/menu");
+                })
+                .catch((err) => console.log(err));
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   }
 });
 
 // Route pour supprimer un usager (Id passé en params)
 router.get("/supprimer/:id", estAdmin, (requete, reponse) => {
   const id = requete.params.id;
-  Usagers.findByIdAndDelete(id).then(
-    requete.flash("success_msg", "Usager supprimé de la BD!"),
-    reponse.redirect("/usagers/menu")
-  );
+
+  Usagers.findByIdAndDelete(id)
+    .exec()
+    .then((usager) => {
+      supprimerFichier(
+        nodeJSpath.join(__dirname, "../public", usager.fichierImage)
+      );
+      requete.flash("success_msg", "Usager supprimé avec succès");
+      reponse.redirect("/usagers/menu");
+    })
+    .catch((err) => console.log(err));
 });
 
-// Fonction pour supprimer un fichier si le fichier n'est pas valide
+// Fonction pour conserver le fichier image dans le dossier public
+function conserverFichier(path, filename) {
+  const newPath = nodeJSpath.join(__dirname, "../public/images", filename);
+  fs.renameSync(path, newPath);
+  return "/images/" + filename;
+}
+
+// Fonction pour supprimer le fichier image du dossier public
 function supprimerFichier(path) {
-  let nomFichier = nodeJSpath.join(__dirname, "..", path);
-  fs.unlink(nomFichier, (err) => {
+  fs.unlink(path, (err) => {
     if (err) console.log(err);
-    else console.log("fichier supprimé:", nomFichier);
   });
 }
 
-// Fonction pour déplacer un fichier vers le dossier images
-function conserverFichier(path, filename) {
-  let nomFichier = nodeJSpath.join(__dirname, "..", path);
-  let nouveauNom = nodeJSpath.join(__dirname, "..", "images", filename);
-  fs.rename(nomFichier, nouveauNom, (err) => {
-    if (err) console.log(err);
-    else console.log("fichier déplacé vers ", nouveauNom);
-  });
-  return filename;
-}
 module.exports = router;
