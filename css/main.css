@@ -3,9 +3,38 @@ body {
   color: white;
   max-width: 100%;
 }
+
+/* erreurs_msg.ejs*/
 .erreurs {
+  margin-top: 20px;
+  background-color: aqua;
   color: red;
 }
+
+.erreur {
+  background-color: #ffd1d1;
+  border: 1px solid #ff7f7f;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.succes {
+  background-color: #d1ffd1;
+  border: 1px solid #7fff7f;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.erreur i,
+.succes i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+ /* erreurs_msg.ejs*/
 .listeUsagers p {
   margin-left: 2em;
 }
