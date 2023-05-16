@@ -92,6 +92,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Route pour les messages flash
+app.get('/', (req, res) => {
+  req.flash('success_msg', 'Message flash de succès');
+  req.flash('error_msg', 'Message flash d\'erreur');
+  req.flash('error', 'Une erreur s\'est produite');
+
+  res.render('login');
+});
+
 app.use("/css", express.static("./css"));
 app.use("/js", express.static("./js"));
 app.use("/images", express.static("./images"));
