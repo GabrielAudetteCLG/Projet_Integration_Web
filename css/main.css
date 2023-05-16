@@ -34,7 +34,7 @@ body {
   font-size: 24px;
   margin-right: 10px;
 }
- /* erreurs_msg.ejs*/
+/* erreurs_msg.ejs*/
 .listeUsagers p {
   margin-left: 2em;
 }
@@ -215,13 +215,13 @@ body {
 
 /* Nav **/
 
-.navbar {
+/* .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-}
+} */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -297,4 +297,18 @@ body {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+}
+
+/* Card media query when smaller then 768px, width of card is 50% width */
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: none !important;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .card {
+    width: 30%;
+  }
 }
