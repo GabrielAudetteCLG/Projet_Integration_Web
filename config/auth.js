@@ -22,15 +22,15 @@ module.exports = {
     req.flash("error_msg", "Connectez-vous pour accéder au site");
     rep.redirect("/");
   },
-  estGestion: function (req, rep, next) {
+  estVendeur: function (req, rep, next) {
     if (req.isAuthenticated()) {
-      let gestion = req.user.role.includes("gestion");
-      if (gestion) {
+      let vendeur = req.user.role.includes("vendeur");
+      if (vendeur) {
         return next();
       } else {
         req.flash(
           "error_msg",
-          'Vous devez être "gestion" pour accéder à cette page'
+          'Vous devez être "vendeur" pour accéder à cette page'
         );
         rep.redirect("/usagers");
       }
@@ -45,3 +45,4 @@ module.exports = {
     rep.redirect("/usagers");
   },
 };
+
