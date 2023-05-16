@@ -259,3 +259,13 @@ body {
 .active {
   color: #76b900 !important;
 }
+.full-height {
+  height: 100vh;
+}
+.compte_container,
+.articles_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}

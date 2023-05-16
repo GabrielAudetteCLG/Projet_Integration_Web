@@ -1,33 +1,54 @@
 <% let admin = user.role.includes('admin'); %>
 <body class="text-center">
-
   <div class="row">
     <% articles.forEach(function(article) { %>
-      <div class="col-12 col-md-6 col-lg-2 mb-4">
-        <div class="card">
-          <div class="card-img-top" style="background-image: url('<%= article.image %>');"></div>
-          <div class="card-body">
-            <h5 class="card-title"><%= article.nom %></h5>
-            <img src="<%= article.image %>" class="card-img-top" alt="Image de <%= article.nom %>" style="width: 100%; max-height: 200px; object-fit: cover;" />
-            <p class="card-price"><strong><%= article.prix %> $</strong></p>
-            <% if (admin) { %>
-              <div class="card-buttons">
-                <a href="/articles/supprimer/<%= article._id %>" class="btn btn-danger" onclick="return confirm('Etes-vous certain de vouloir supprimer <%= article.nom %>?');">
-                  <i class="fa fa-trash"></i>
-                </a>
-                <a href="/articles/editer/<%= article.isbn %>" class="btn btn-secondary">
-                  <i class="fa fa-pencil-alt fa-fw"></i>
-                </a>
-              </div>
-            <% } else { %>
-              <div class="card-buttons">
-                <a href="#" class="btn btn-primary">Ajouter au panier</a>
-              </div>
-            <% } %>
+    <div class="col-12 col-md-6 col-lg-2 mb-4">
+      <div class="card">
+        <div
+          class="card-img-top"
+          style="background-image: url('<%= article.image %>')"
+        ></div>
+        <div class="card-body">
+          <h5 class="card-title"><%= article.nom %></h5>
+          <img
+            src="<%= article.image %>"
+            class="card-img-top"
+            alt="Image de <%= article.nom %>"
+            style="width: 100%; max-height: 200px; object-fit: cover"
+          />
+          <p class="card-price"><strong><%= article.prix %> $</strong></p>
+          <% if (admin) { %>
+          <div class="card-buttons">
+            <a
+              href="/articles/supprimer/<%= article._id %>"
+              class="btn btn-danger"
+              onclick="return confirm('Etes-vous certain de vouloir supprimer <%= article.nom %>?');"
+            >
+              <i class="fa fa-trash"></i>
+            </a>
+            <a
+              href="/articles/editer/<%= article.isbn %>"
+              class="btn btn-secondary"
+            >
+              <i class="fa fa-pencil-alt fa-fw"></i>
+            </a>
           </div>
+          <% } else { %>
+          <div class="card-buttons">
+            <a href="#" class="btn btn-primary">Ajouter au panier</a>
+          </div>
+          <% } %>
         </div>
       </div>
+    </div>
     <% }); %>
   </div>
-
 </body>
+
+<div class="full-height">
+  <div class="container pt-4 pt-xl-5 pb-xl-5 articles_container">
+    <div class="row pt-5 pb-5">
+      <div class="col" style="text-align: left"></div>
+    </div>
+  </div>
+</div>
