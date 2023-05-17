@@ -3,15 +3,14 @@
 <form action="/usagers/ajouter" method="POST" enctype="multipart/form-data">
   <div class="form-wrapper">
     <div class="form-group">
-
       <input
-        type="text"
+        type="email"
         class="form-control"
-        name="nom"
-        id="nom"
+        name="login"
+        id="login"
         aria-describedby="emailHelp"
-        placeholder="nom"
-        value="<%= typeof nom != 'undefined' ? nom : '' %>"
+        placeholder="Login"
+        value="<%= typeof login != 'undefined' ? login : '' %>"
       />
       <input
         type="email"
@@ -44,8 +43,8 @@
     <div class="form-group">
       <div>Rôles</div>
       <div class="checkbox-wrapper">
-        <div class="form-check form-check-inline ">
-          <label class="form-check-label" for="normal">Client</label>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label" for="normal">Normal</label>
           <input
             type="checkbox"
             class="form-check-input"
@@ -56,22 +55,13 @@
         </div>
         <div class="form-check form-check-inline">
           <label class="form-check-label" for="admin">Admin</label>
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="admin"
-            name="admin"
-            <%= typeof admin != 'undefined' ? 'checked' : '' %>
-          />
+          <input type="checkbox" class="form-check-input" id="admin"
+          name="admin" <%= typeof admin != 'undefined' ? 'checked' : '' %> />
         </div>
         <div class="form-check form-check-inline">
-          <label class="form-check-label" for="gestion">Vendeur</label>
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="gestion"
-            name="gestion"
-            <%= typeof gestion != 'undefined' ? 'checked' : '' %>
+          <label class="form-check-label" for="gestion">Gestion</label>
+          <input type="checkbox" class="form-check-input" id="gestion"
+          name="gestion" <%= typeof gestion != 'undefined' ? 'checked' : '' %>
           />
         </div>
       </div>
@@ -79,4 +69,3 @@
     <button type="submit" class="btn btn-success">Ajouter l'usager</button>
   </div>
 </form>
-

@@ -33,32 +33,35 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" style="color: white" href="/accueil"
-          >Accueil</a
-        >
-        <a class="navbar-brand fw-bold" style="color: white" href="/boutique"
-          >Boutique</a
-        >
-        <div class="dropdown">
-          <button
-            class="dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+        <div>
+          <a class="navbar-brand fw-bold" style="color: white" href="/accueil"
+            >Accueil</a
           >
-            <a href="/compte">
-              <i class="fa-solid fa-circle-user fa-2xl userAccountIcon"></i>
-            </a>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/usagers/menu">Menu</a>
-            <a class="dropdown-item" href="/usagers/ajouter">Ajouter</a>
-            <a class="dropdown-item" href="/articles">Articles</a>
-            <a class="dropdown-item" href="/usagers/deconnexion"
-              >Se déconnecter</a
+        </div>
+        <div>
+          <a class="navbar-brand fw-bold" style="color: white" href="/boutique"
+            >Boutique</a
+          >
+        </div>
+        <div>
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
+              <a href="/compte">
+                <i class="fa-solid fa-circle-user fa-2xl userAccountIcon"></i>
+              </a>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/usagers">Usagers</a>
+              <a class="dropdown-item" href="/articles">Articles</a>
+              <a class="dropdown-item" href="/deconnexion">Se déconnecter</a>
+            </div>
           </div>
         </div>
       </div>
@@ -72,9 +75,9 @@
 
     <!-- Chatbot -->
     <div class="chatbot-container card" id="chatbot-container">
-      <div class="chatbot-header">
+      <div class="card-header chatbot-header">
         <h5 class="mb-0">Chatbot</h5>
-        <i class="fas fa-times chatbot-close-icon" onclick="toggleChatbot()"></i>
+        <button class="btn-close" onclick="toggleChatbot()"></button>
       </div>
       <div class="chatbot-messages card-body p-2" id="chatbot-messages"></div>
       <div class="card-footer chatbot-input-container p-2">
@@ -85,11 +88,9 @@
             class="form-control"
             placeholder="Tapez votre message..."
           />
-          <div class="chatbot-send-button">
-            <button class="btn btn-primary" onclick="sendMessage()">
-              Envoyer
-            </button>
-          </div>
+          <button class="btn btn-primary" onclick="sendMessage()">
+            Envoyer
+          </button>
         </div>
       </div>
     </div>
