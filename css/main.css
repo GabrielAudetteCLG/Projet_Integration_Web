@@ -291,3 +291,56 @@ body {
     width: 30%;
   }
 }
+
+
+
+/* FORM*/
+.form-group {
+  max-width: 100%;
+  margin: 10px;
+}
+
+h3.text-center {
+  color: rgb(139, 139, 139);
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: rgb(139, 139, 139);
+  text-align: left;
+  opacity: 1; /* Firefox */
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgb(139, 139, 139);
+  text-align: left;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgb(139, 139, 139);
+  text-align: left;
+}
+
+input[type=text],
+input[type=number],
+input[type=file],
+textarea,
+select,
+option:first-child {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: rgb(66, 65, 65);
+  color: white;
+}
+
+/* FORM*/
+
+.container{
+  
+}

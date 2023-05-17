@@ -8,6 +8,7 @@ const Usagers = require("../modeles/usagers");
 const mongoose = require("mongoose");
 const { estAuthentifie, estAdmin } = require("../config/auth");
 
+
 // Route get menu usagers
 router.get("/", estAuthentifie, (requete, reponse) => {
   reponse.render("usagers", {

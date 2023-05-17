@@ -52,6 +52,8 @@ const storage = multer.diskStorage({
 });
 app.use(upload.any());
 
+
+
 // Connexion a la base de données
 mongoose.set("strictQuery", false);
 mongoose.connect(
@@ -91,6 +93,8 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash("error");
   next();
 });
+
+
 
 // Route pour les messages flash
 app.get('/', (req, res) => {
