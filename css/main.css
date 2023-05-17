@@ -269,6 +269,10 @@ body {
   flex-direction: column;
   text-align: center;
 }
+.form_wrapper_usager {
+  width: 90%;
+  margin: auto;
+}
 .checkbox-wrapper {
   text-align: start;
 }
