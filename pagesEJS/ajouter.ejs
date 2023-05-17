@@ -1,71 +1,121 @@
-<%- include ('./partiels/erreurs_msg') %>
-<h1 class="text-center">Ajouter un usager</h1>
-<form action="/usagers/ajouter" method="POST" enctype="multipart/form-data">
-  <div class="form-wrapper">
-    <div class="form-group">
-      <input
-        type="email"
-        class="form-control"
-        name="login"
-        id="login"
-        aria-describedby="emailHelp"
-        placeholder="Login"
-        value="<%= typeof login != 'undefined' ? login : '' %>"
-      />
-      <input
-        type="email"
-        class="form-control"
-        name="login"
-        id="login"
-        aria-describedby="emailHelp"
-        placeholder="Login"
-        value="<%= typeof login != 'undefined' ? login : '' %>"
-      />
-    </div>
-    <div class="form-group">
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        placeholder="Mot de passe"
-        value="<%= typeof password != 'undefined' ? password : '' %>"
-      />
-      <input
-        type="password"
-        class="form-control"
-        name="password2"
-        id="password2"
-        placeholder="Confirmez le mot de passe"
-        value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-      />
-    </div>
-    <div class="form-group">
-      <div>Rôles</div>
-      <div class="checkbox-wrapper">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label" for="normal">Normal</label>
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="normal"
-            checked
-            disabled
-          />
-        </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label" for="admin">Admin</label>
-          <input type="checkbox" class="form-check-input" id="admin"
-          name="admin" <%= typeof admin != 'undefined' ? 'checked' : '' %> />
-        </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label" for="gestion">Gestion</label>
-          <input type="checkbox" class="form-check-input" id="gestion"
-          name="gestion" <%= typeof gestion != 'undefined' ? 'checked' : '' %>
-          />
+<div
+  style="
+    opacity: 0.8;
+    background-color: #333333;
+    color: darkgrey;
+    padding: 20px;
+    margin: auto;
+    width: 70%;
+    margin-top: 10%;
+    border-radius: 1%;
+  "
+>
+  <%- include ('./partiels/erreurs_msg') %>
+  <h4 class="text-center">Ajouter un usager</h4>
+  <form action="/usagers/ajouter" method="POST" enctype="multipart/form-data">
+    <div class="form-wrapper form_wrapper_usager">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="nom"
+          id="nom"
+          aria-describedby="emailHelp"
+          placeholder="nom"
+          value="<%= typeof nom != 'undefined' ? nom : '' %>"
+          style="
+            background-color: #444444;
+            color: grey;
+            width: 95%;
+            margin-right: 5%;
+            display: inline-block;
+          "
+        />
+        <input
+          type="email"
+          class="form-control"
+          name="login"
+          id="login"
+          aria-describedby="emailHelp"
+          placeholder="Login"
+          value="<%= typeof login != 'undefined' ? login : '' %>"
+          style="
+            background-color: #444444;
+            color: grey;
+            width: 95%;
+            margin-right: 5%;
+            display: inline-block;
+          "
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Mot de passe"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+          style="
+            background-color: #444444;
+            color: grey;
+            width: 95%;
+            margin-right: 5%;
+            display: inline-block;
+          "
+        />
+        <input
+          type="password"
+          class="form-control"
+          name="password2"
+          id="password2"
+          placeholder="Confirmez le mot de passe"
+          value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+          style="
+            background-color: #444444;
+            color: grey;
+            width: 95%;
+            margin-right: 5%;
+            display: inline-block;
+          "
+        />
+      </div>
+      <div class="form-group">
+        <label
+          style="color: darkgray; align-items: flex-start; text-align: left"
+          >Rôles</label
+        >
+        <div style="display: flex; align-items: left">
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="normal"
+              checked
+              disabled
+            />
+            <label class="form-check-label" for="normal" style="color: grey"
+              >Client</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="admin"
+            name="admin" <%= typeof admin != 'undefined' ? 'checked' : '' %> />
+            <label class="form-check-label" for="admin" style="color: grey"
+              >Admin</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="gestion"
+            name="gestion" <%= typeof gestion != 'undefined' ? 'checked' : '' %>
+            />
+            <label class="form-check-label" for="gestion" style="color: grey"
+              >Vendeur</label
+            >
+          </div>
         </div>
       </div>
+      <button type="submit" class="btn btn-success">Ajouter l'usager</button>
     </div>
-    <button type="submit" class="btn btn-success">Ajouter l'usager</button>
-  </div>
-</form>
+  </form>
+</div>
