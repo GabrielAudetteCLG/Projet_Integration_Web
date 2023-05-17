@@ -310,12 +310,23 @@ body {
   color: white;
   padding: 10px;
   border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .chatbot-messages {
   flex-grow: 1;
   padding: 10px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbot-message-container {
+  width: 100%;
+  display: flex;
+  margin-top: 8px;
 }
 
 .chatbot-message-sent {
@@ -341,7 +352,6 @@ body {
 .chatbot-input-container {
   display: flex;
   padding: 10px;
-  align-items: stretch;
 }
 
 .chatbot-input-container input {
@@ -349,6 +359,12 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
+}
+
+.chatbot-send-button {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .chatbot-input-container button {
@@ -359,18 +375,15 @@ body {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
 }
-.userAccountIcon {
-  width: 0px;
-  height: 0px;
-  color: white;
+
+.chatbot-close-icon {
+  cursor: pointer;
+  font-size: 18px;
 }
-.btn-icon {
-  border: none;
-}
+/* end of CHATBOT CSS **/
+
+
 
 /* Nav **/
 
