@@ -27,7 +27,7 @@
     </style>
     <title>
       <% if(typeof(titre)!=="undefined") { %> <%= titre %> <% } else { %> Titre
-      par défault <% } %>
+      par défaut <% } %>
     </title>
   </head>
   <body>
@@ -99,6 +99,7 @@
         const navbarLinks = document.querySelectorAll(".navbar-brand");
         const currentPath = window.location.pathname;
 
+        // Mettre en surbrillance le lien actif dans la barre de navigation
         navbarLinks.forEach((link) => {
           if (link.getAttribute("href") === currentPath) {
             link.classList.add("active");
@@ -114,6 +115,7 @@
       const chatbotInput = document.getElementById("chatbot-input");
 
       function toggleChatbot() {
+        // Afficher ou masquer le chatbot
         chatbotContainer.style.display =
           chatbotContainer.style.display === "none" ? "flex" : "none";
       }
@@ -124,13 +126,13 @@
 
         chatbotInput.value = "";
 
-        // Affichez le message de l'utilisateur
+        // Afficher le message de l'utilisateur
         const userMessage = document.createElement("div");
         userMessage.textContent = message;
-        userMessage.classList.add("chatbot-message-sent"); // Ajoutez la classe CSS pour les messages envoyés
+        userMessage.classList.add("chatbot-message-sent"); // Ajouter la classe CSS pour les messages envoyés
         chatbotMessages.appendChild(userMessage);
 
-        // Envoyez la requête au serveur
+        // Envoyer la requête au serveur
         try {
           const response = await fetch("/chatbot", {
             method: "POST",
@@ -140,18 +142,27 @@
 
           const data = await response.json();
 
-          // Affichez la réponse du chatbot
+          // Afficher la réponse du chatbot
           const chatbotMessage = document.createElement("div");
           chatbotMessage.textContent = data.message;
-          chatbotMessage.classList.add("chatbot-message-received"); // Ajoutez la classe CSS pour les messages reçus
+          chatbotMessage.classList.add("chatbot-message-received"); // Ajouter la classe CSS pour les messages reçus
           chatbotMessages.appendChild(chatbotMessage);
         } catch (error) {
           console.error(error);
         }
 
-        // Faites défiler vers le bas pour afficher les nouveaux messages
+        // Faire défiler vers le bas pour afficher les nouveaux messages
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
       }
+
+      // Ajouter le message d'accueil lorsque la page se charge
+      window.onload = function() {
+        const greetingMessage = "Bienvenue chez CGI! Vous discutez maintenant avec un assistant IA. Comment puis-je vous aider aujourd'hui?";
+        const chatbotGreeting = document.createElement("div");
+        chatbotGreeting.textContent = greetingMessage;
+        chatbotGreeting.classList.add("chatbot-message-received"); // Ajouter la classe CSS pour les messages reçus
+        chatbotMessages.appendChild(chatbotGreeting);
+      };
     </script>
     <script src="../public/script.js"></script>
   </body>
