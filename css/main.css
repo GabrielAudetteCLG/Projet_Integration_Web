@@ -90,12 +90,44 @@
   margin: 0 100px 0 100px;
 }
 
+/* Page Ajouter usager */
+.ajouter_wrapper {
+  background-color: var(--grey);
+  color: var(--white);
+  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 15px;
+}
+@media screen and (max-width: 768px) {
+  .ajouter_wrapper {
+    max-width: none !important;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .ajouter_wrapper {
+    width: 50%;
+  }
+}
+.input_ajout_usager {
+  background-color: #444444;
+  color: grey;
+  width: 95%;
+  margin-right: 5%;
+  display: inline-block;
+}
+.form-checkbox-roles {
+  display: flex;
+  align-items: center;
+}
+
 /* Page Checkout */
 
 .product_image {
   width: 100px;
   height: 100px;
-  border-radius: 15%;
+  border-radius: 15px;
 }
 
 .price {
@@ -233,6 +265,7 @@ body {
   border-radius: 15px;
   border: none;
   text-align: center;
+  background-color: #535353;
 }
 .form-group input:focus {
   outline: none;
@@ -382,8 +415,6 @@ body {
   font-size: 18px;
 }
 /* end of CHATBOT CSS **/
-
-
 
 /* Nav **/
 
