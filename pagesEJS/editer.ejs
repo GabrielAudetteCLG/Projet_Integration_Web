@@ -1,7 +1,7 @@
 <%- include ('./partiels/erreurs_msg') %>
 <h1 class="text-center">Modifier un usager</h1>
 
-<form action="/usagers/editer" method="POST" enctype="multipart/form-data">
+<form action="/usagers/editer/<%=usager.id%>" method="POST" enctype="multipart/form-data">
   <div class="form-wrapper">
     <div class="form-group">
       <label for="id">Id</label>
@@ -36,9 +36,10 @@
         value="<%= typeof nom != 'undefined' ? nom : '' %>"
       />
     </div>
+
     <div class="checkbox-wrapper">
       <div class="form-check">
-        <label class="form-check-label" for="normal">Normal</label>
+        <label class="form-check-label" for="normal">Client</label>
         <input
           type="checkbox"
           class="form-check-input"
@@ -54,22 +55,16 @@
         <%= typeof admin != 'undefined' ? 'checked' : '' %> />
       </div>
       <div class="form-check">
-        <label class="form-check-label" for="gestion">Gestion</label>
-        <input type="checkbox" class="form-check-input" id="gestion"
-        name="gestion" <% if (usager.role.includes('gestion')) { %> checked <% }
+        <label class="form-check-label" for="vendeur">Vendeur</label>
+        <input type="checkbox" class="form-check-input" id="vendeur"
+        name="vendeur" <% if (usager.role.includes('vendeur')) { %> checked <% }
         %> <%= typeof gestion != 'undefined' ? 'checked' : '' %> />
       </div>
     </div>
-    <label for="fichier">Téléverser votre image: </label>
-    <input
-      type="file"
-      name="fichier"
-      id="fichier"
-      class="form-control"
-      required
-    />
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-success">
       Modifier l'utilisateur
     </button>
   </div>
 </form>
+
+

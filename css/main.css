@@ -3,38 +3,9 @@ body {
   color: white;
   max-width: 100%;
 }
-
-/* erreurs_msg.ejs*/
 .erreurs {
-  margin-top: 20px;
-  background-color: aqua;
   color: red;
 }
-
-.erreur {
-  background-color: #ffd1d1;
-  border: 1px solid #ff7f7f;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.succes {
-  background-color: #d1ffd1;
-  border: 1px solid #7fff7f;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.erreur i,
-.succes i {
-  font-size: 24px;
-  margin-right: 10px;
-}
-/* erreurs_msg.ejs*/
 .listeUsagers p {
   margin-left: 2em;
 }
@@ -221,8 +192,7 @@ body {
 }
 .accueil-main {
   background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
 }
 .boutique-main {
   background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
@@ -319,11 +289,13 @@ body {
   height: 100%;
 }
 
-.card_compte {
-  max-width: 35%;
-  text-align: center;
-  margin: auto;
-  background-color: #2d2c38;
+/* Align container to center of page, takes 100% space, divide element by space evenly between each other (in top of each other) */
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+  padding: 0 50px 0 50px;
 }
 
 /* Card media query when smaller then 768px, width of card is 50% width */
