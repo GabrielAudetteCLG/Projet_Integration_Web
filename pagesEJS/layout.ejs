@@ -72,9 +72,9 @@
 
     <!-- Chatbot -->
     <div class="chatbot-container card" id="chatbot-container">
-      <div class="card-header chatbot-header">
+      <div class="chatbot-header">
         <h5 class="mb-0">Chatbot</h5>
-        <button class="btn-close" onclick="toggleChatbot()"></button>
+        <i class="fas fa-times chatbot-close-icon" onclick="toggleChatbot()"></i>
       </div>
       <div class="chatbot-messages card-body p-2" id="chatbot-messages"></div>
       <div class="card-footer chatbot-input-container p-2">
@@ -85,9 +85,11 @@
             class="form-control"
             placeholder="Tapez votre message..."
           />
-          <button class="btn btn-primary" onclick="sendMessage()">
-            Envoyer
-          </button>
+          <div class="chatbot-send-button">
+            <button class="btn btn-primary" onclick="sendMessage()">
+              Envoyer
+            </button>
+          </div>
         </div>
       </div>
     </div>
