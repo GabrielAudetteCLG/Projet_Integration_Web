@@ -38,7 +38,7 @@ app.post("/chatbot", express.json(), async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .json({ message: "Erreur lors de la communication avec OpenAI" });
+      .json({ message: "Erreur lors de la communication avec l'assistant virtuel" });
   }
 });
 
