@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { estAuthentifie } = require("../config/auth");
+const Articles = require("../modeles/articles");
 
 // Routes qui redirect a ma page de login si entré dans l'url (/, /index.html, /index)
 router.get("/", (requete, res) => res.redirect("/usagers/login"));
@@ -16,7 +17,16 @@ router.get("/menu", (requete, reponse) =>
   reponse.render("menu", { titre: "Menu" })
 );
 router.get("/boutique", (requete, reponse) =>
-  reponse.render("boutique", { titre: "Boutique" })
+  Articles.find({}, null, { sort: { nom: 1 } })
+    .exec()
+    .then((articles) => {
+      reponse.render("boutique", {
+        articles: articles,
+        titre: "Boutique",
+      });
+      console.log(articles);
+    })
+    .catch((err) => console.log(err))
 );
 //Get accueil
 router.get("/accueil", (requete, reponse) => {

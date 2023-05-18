@@ -52,22 +52,43 @@
       </div>
     </div>
   </div>
+  <% articles.forEach(function(article) { %>
   <div class="container boutique-article-container">
     <div class="container">
       <div class="product-wrapper">
-        <h1>GeForce RTX 3080 TI</h1>
+        <h1><%= article.nom %></h1>
         <ul>
-          <li>11GB 352-Bit GDDR6</li>
-          <li>1 x HDMI 2.0b 3x DisplayPort 1.4</li>
-          <li>Boost Clock 1635 MHz</li>
-          <li>4352 CUDA cores</li>
-          <li>450$</li>
+          <li><%= article.details %></li>
+
+          <p><%= article.prix %></p>
         </ul>
         <div class="button" id="button">
           <div id="slide"></div>
-          <a href="/checkout">J'achète</a>
+          <a href="/checkout" id="ajout">J'achète</a>
         </div>
       </div>
     </div>
   </div>
+  <% }); %>
 </main>
+
+<script>
+  const ajout = document.getElementById("ajout");
+  const parent_button = document.getElementById("button");
+  const bgImage = document.getElementsByClassName(
+    "boutique-article-container"
+  ).backgroundImage;
+  const panier = [];
+  ajout.addEventListener("click", ajoutAuPanier);
+  function ajoutAuPanier(e) {
+    e.preventDefault();
+    console.log(bgImage);
+    const article = {
+      nom: parent_button.parentNode.querySelector("h1").innerHTML,
+      details: parent_button.parentNode.querySelector("li").innerHTML,
+      prix: parent_button.parentNode.querySelector("p").innerHTML,
+      imageFond: parent_button.parentNode.parentNode.querySelector("img").src,
+    };
+    panier.push(article);
+  }
+</script>
