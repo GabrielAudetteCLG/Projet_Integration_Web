@@ -8,7 +8,6 @@ const Usagers = require("../modeles/usagers");
 const mongoose = require("mongoose");
 const { estAuthentifie, estAdmin } = require("../config/auth");
 
-
 // Route get menu usagers
 router.get("/", estAuthentifie, (requete, reponse) => {
   reponse.render("usagers", {
@@ -65,7 +64,6 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
     errors.push({ msg: "Le mot de passe doit avoir au moins 4 caractères" });
   }
   if (errors.length > 0) {
-    
     reponse.render("ajouter", {
       errors,
       titre: "Ajout d'un usager",
@@ -133,7 +131,7 @@ router.get("/editer/:id", estAdmin, (requete, reponse) => {
 // Route pour modifier un usager (réception des données du formulaire)
 router.post("/editer/:id", estAdmin, (requete, reponse) => {
   console.log(requete.body);
-  const { nom, login,  admin, vendeur } = requete.body;
+  const { nom, login, admin, vendeur } = requete.body;
   const id = requete.params.id;
   let errors = [];
   let roles = ["client"];
@@ -161,7 +159,6 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
   } else {
     Usagers.findOne({ login: login, _id: { $ne: id } }).then((user) => {
       if (user) {
-  
         errors.push({ msg: "Ce courriel existe déjà" });
         Usagers.findById(id)
           .exec()
@@ -202,16 +199,15 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
                     .catch((err) => console.log(err));
                 });
               });
-            }*/ 
-             
-              usager
-                .save()
-                .then((usager) => {
-                  requete.flash("success_msg", "Usager modifié avec succès");
-                  reponse.redirect("/usagers/menu");
-                })
-                .catch((err) => console.log(err));
-            
+            }*/
+
+            usager
+              .save()
+              .then((usager) => {
+                requete.flash("success_msg", "Usager modifié avec succès");
+                reponse.redirect("/usagers/menu");
+              })
+              .catch((err) => console.log(err));
           })
           .catch((err) => console.log(err));
       }

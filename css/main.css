@@ -153,7 +153,7 @@
 }
 
 .usager-ajouter-form-wrapper {
-  width: 90%;
+  width: 90% !important;
   margin: auto;
 }
 .ajouter-usager-input {
@@ -180,6 +180,18 @@
   align-items: center;
 }
 
+/* Usager editer */
+usager-editer-container {
+  opacity: 0.8;
+  background-color: #333333;
+  color: darkgrey;
+  padding: 20px;
+  margin: auto;
+  width: 70%;
+  margin-top: 10%;
+  border-radius: 1%;
+}
+
 /* Page Checkout */
 
 .checkout-product-image {
@@ -201,29 +213,33 @@
   text-decoration: line-through;
 }
 
-.dark_input {
+.checkout-form-input {
   background-color: var(--grey) !important;
   border: none;
   margin-top: 15px;
   color: var(--white) !important;
   text-align: center;
 }
-.dark_input::placeholder {
+.checkout-form-input::placeholder,
+.checkout-form-input::placeholder,
+.checkout-form-input-half::placeholder {
   color: var(--white);
+  text-align: center;
+}
+.usager-ajouter-form-input::placeholder {
+  color: var(--white);
+  text-align: center;
 }
 
-.dark_input_half {
+.checkout-form-input-half {
   background-color: var(--grey) !important;
   border: none;
-  width: 47.5%;
+  width: 47.5% !important;
   color: var(--white) !important;
   text-align: center;
 }
-.dark_input_half::placeholder {
-  color: var(--white);
-}
 
-.dark_input_half_container {
+.checkout-form-input-half_container {
   display: flex;
   justify-content: space-between;
 }
@@ -585,7 +601,7 @@ body {
 
 /* Card media query when smaller then 768px, width of card is 50% width */
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .card {
     max-width: none !important;
     width: 100%;
@@ -595,9 +611,7 @@ body {
   .card {
     width: 30%;
   }
-}
-
-
+} */
 
 /* FORM*/
 .form-group {
@@ -609,7 +623,6 @@ h3.text-center {
   color: rgb(139, 139, 139);
 }
 
-
 input::placeholder,
 textarea::placeholder {
   color: rgb(139, 139, 139);
@@ -618,20 +631,22 @@ textarea::placeholder {
 }
 
 input:-ms-input-placeholder,
-textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   color: rgb(139, 139, 139);
   text-align: left;
 }
 
 input::-ms-input-placeholder,
-textarea::-ms-input-placeholder { /* Microsoft Edge */
+textarea::-ms-input-placeholder {
+  /* Microsoft Edge */
   color: rgb(139, 139, 139);
   text-align: left;
 }
 
-input[type=text],
-input[type=number],
-input[type=file],
+input[type="text"],
+input[type="number"],
+input[type="file"],
 textarea,
 select,
 option:first-child {
@@ -645,5 +660,3 @@ option:first-child {
 }
 
 /* FORM*/
-
-
