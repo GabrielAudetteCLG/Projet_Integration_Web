@@ -2,6 +2,7 @@
 
 .btn-primary {
   background-color: var(--green) !important;
+  border: 1px solid var(--green) !important;
 }
 /* Bouton */
 
@@ -250,7 +251,7 @@
 }
 
 /* Usager editer */
-usager-editer-container {
+.usager-editer-container {
   opacity: 0.8;
   background-color: #333333;
   color: darkgrey;
@@ -259,6 +260,20 @@ usager-editer-container {
   width: 70%;
   margin-top: 10%;
   border-radius: 1%;
+}
+
+/* Page liste usager */
+.liste-usager-card-body {
+  border-radius: 15px;
+  background-color: var(--grey);
+}
+.liste-usager-card-body-style-card {
+  background-color: transparent;
+  margin: auto;
+  width: 13rem;
+}
+.liste-usager-on-hover:hover {
+  background-color: var(--green);
 }
 
 /* Page Checkout */
