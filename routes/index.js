@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { estAuthentifie } = require("../config/auth");
 const Articles = require("../modeles/articles");
+const bodyParser = require("body-parser");
+
+// Parse JSON request body
+router.use(bodyParser.json());
 
 // Routes qui redirect a ma page de login si entré dans l'url (/, /index.html, /index)
 router.get("/", (requete, res) => res.redirect("/usagers/login"));
@@ -59,5 +63,11 @@ router.get("/deconnexion", (requete, reponse, next) => {
 router.get("/", (requete, reponse) =>
   reponse.render("login", { titre: "Bienvenue " })
 );
+
+// Route pour panier
+router.post("/checkout", (req, res) => {
+  const panier = req.body.panier;
+  res.render("checkout", { panier: panier });
+});
 
 module.exports = router;

@@ -64,14 +64,13 @@
         </ul>
         <div class="button" id="button">
           <div id="slide"></div>
-          <a href="/checkout" id="ajout">J'achète</a>
+          <a href="/#" id="ajout">J'achète</a>
         </div>
       </div>
     </div>
   </div>
   <% }); %>
 </main>
-
 <script>
   const ajout = document.getElementById("ajout");
   const parent_button = document.getElementById("button");
@@ -79,8 +78,8 @@
   const bgStyles = window.getComputedStyle(bg);
   const bgImage = bgStyles.backgroundImage;
   const panier = [];
-  ajout.addEventListener("click", ajoutAuPanier);
-  function ajoutAuPanier(e) {
+
+  ajout.addEventListener("click", function (e) {
     e.preventDefault();
     const article = {
       nom: parent_button.parentNode.querySelector("h1").innerHTML,
@@ -89,5 +88,17 @@
       imageFond: bgImage,
     };
     panier.push(article);
-  }
+
+    // Send the panier variable to the server using AJAX
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/checkout");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({ panier: panier }));
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        window.location.href = "/checkout?panier=" + JSON.stringify(panier);
+      }
+    };
+  });
 </script>
