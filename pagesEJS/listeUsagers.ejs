@@ -1,4 +1,4 @@
-<% let admin = user.role.includes('admin'); %>
+ <% let admin = user.role.includes('admin'); %> 
 <h1 class="text-center">Liste des usagers</h1>
 <div class="container">
   <div class="row">
@@ -28,7 +28,7 @@
             <td>
               <%= usager.role.length > 1 ? '(': '' %> <%=
               usager.role.indexOf('admin')!==-1?'A':'' %> <%=
-              usager.role.indexOf('gestion')!==-1?'G':'' %> <%=
+              usager.role.indexOf('vendeur')!==-1?'V':'' %> <%=
               usager.role.length > 1 ? ')': '' %>
             </td>
             <td>

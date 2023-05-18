@@ -12,7 +12,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 // Configurez OpenAI avec votre clé API directement dans le code
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 const openaiApi = new OpenAIApi(configuration);
 
@@ -38,7 +38,7 @@ app.post("/chatbot", express.json(), async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .json({ message: "Erreur lors de la communication avec OpenAI" });
+      .json({ message: "Erreur lors de la communication avec l'assistant virtuel" });
   }
 });
 

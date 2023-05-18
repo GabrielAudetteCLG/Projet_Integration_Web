@@ -22,12 +22,7 @@ let schemaUsagers = mongoose.Schema({
   role: {
     type: Array,
     required: true,
-    default: ["normal"],
-  },
-  fichierImage: {
-    type: String,
-    required: true,
-    default: "",
+    default: ["client"],
   },
 });
 

@@ -10,7 +10,7 @@ const { estAuthentifie, estAdmin } = require("../config/auth");
 
 
 // Route get menu usagers
-router.get("/", estAuthentifie, (requete, reponse) => {
+router.get("/", /*estAuthentifie,*/ (requete, reponse) => {
   reponse.render("usagers", {
     titre: "Menu de gestion des usagers",
     user: requete.user,
@@ -27,7 +27,7 @@ router.post("/login", (req, rep, next) => {
 });
 
 // Route get liste des usagers
-router.get("/menu", estAuthentifie, (requete, reponse) => {
+router.get("/menu", /*estAuthentifie,*/ (requete, reponse) => {
   console.log(requete.user);
   Usagers.find({}, null, { sort: { login: 1 } })
     .exec()
@@ -48,31 +48,13 @@ router.get("/ajouter", estAdmin, (requete, reponse) =>
 
 // Route pour Ajouter un usager (réception des données du formulaire)
 router.post("/ajouter", estAdmin, (requete, reponse) => {
-  const { nom, login, password, password2, admin, gestion } = requete.body;
-  const { originalname, destination, filename, size, path, mimetype } =
-    requete.files[0];
-  const maxFileSize = 1024 * 10;
-  const mimetypePermis = [
-    "image/png",
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/webp",
-  ];
+  const { nom, login, password, password2, admin, vendeur } = requete.body;
+  console.log(requete.body);
   let errors = [];
   let roles = ["normal"];
   if (admin === "on") roles.push("admin");
-  if (gestion === "on") roles.push("gestion");
+  if (vendeur === "on") roles.push("vendeur");
 
-  if (size > maxFileSize) {
-    errors.push({
-      msg: `La taille du fichier est trop grande (max ${maxFileSize} octets)`,
-    });
-  } else {
-    if (!mimetypePermis.includes(mimetype)) {
-      errors.push({ msg: "Format de fichier non accepté" });
-    }
-  }
   if (!nom || !login || !password || !password2) {
     errors.push({ msg: "Remplir toutes les cases du formulaire" });
   }
@@ -83,7 +65,7 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
     errors.push({ msg: "Le mot de passe doit avoir au moins 4 caractères" });
   }
   if (errors.length > 0) {
-    supprimerFichier(path);
+    
     reponse.render("ajouter", {
       errors,
       titre: "Ajout d'un usager",
@@ -92,12 +74,11 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
       password,
       password2,
       admin,
-      gestion,
+      vendeur,
     });
   } else {
     Usagers.findOne({ login: login }).then((user) => {
       if (user) {
-        supprimerFichier(path);
         errors.push({ msg: "Ce courriel existe déjà" });
         reponse.render("ajouter", {
           errors,
@@ -107,7 +88,7 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
           password,
           password2,
           admin,
-          gestion,
+          vendeur,
         });
       } else {
         const newUser = new Usagers({
@@ -120,7 +101,6 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.pwd, salt, (err, hash) => {
             if (err) throw err;
-            newUser.fichierImage = conserverFichier(path, filename);
             newUser.pwd = hash;
             newUser
               .save()
@@ -139,7 +119,6 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
 // Route pour modifier un usager (Id passé en params)
 router.get("/editer/:id", estAdmin, (requete, reponse) => {
   const id = requete.params.id;
-
   Usagers.findById(id)
     .exec()
     .then((usager) => {
@@ -153,43 +132,18 @@ router.get("/editer/:id", estAdmin, (requete, reponse) => {
 
 // Route pour modifier un usager (réception des données du formulaire)
 router.post("/editer/:id", estAdmin, (requete, reponse) => {
+  console.log(requete.body);
+  const { nom, login,  admin, vendeur } = requete.body;
   const id = requete.params.id;
-  const { nom, login, password, password2, admin, gestion } = requete.body;
-  const { originalname, destination, filename, size, path, mimetype } =
-    requete.files[0];
-  const maxFileSize = 1024 * 10;
-  const mimetypePermis = [
-    "image/png",
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/webp",
-  ];
   let errors = [];
-  let roles = ["normal"];
+  let roles = ["client"];
   if (admin === "on") roles.push("admin");
-  if (gestion === "on") roles.push("gestion");
+  if (vendeur === "on") roles.push("vendeur");
 
-  if (size > maxFileSize) {
-    errors.push({
-      msg: `La taille du fichier est trop grande (max ${maxFileSize} octets)`,
-    });
-  } else {
-    if (!mimetypePermis.includes(mimetype)) {
-      errors.push({ msg: "Format de fichier non accepté" });
-    }
-  }
-  if (!nom || !login || !password || !password2) {
+  /*if ( !nom || !login ) {
     errors.push({ msg: "Remplir toutes les cases du formulaire" });
-  }
-  if (password !== password2) {
-    errors.push({ msg: "Les mots de passe ne correspondent pas" });
-  }
-  if (password.length < 4) {
-    errors.push({ msg: "Le mot de passe doit avoir au moins 4 caractères" });
-  }
+  }*/
   if (errors.length > 0) {
-    supprimerFichier(path);
     Usagers.findById(id)
       .exec()
       .then((usager) => {
@@ -199,17 +153,15 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
           usager,
           nom,
           login,
-          password,
-          password2,
           admin,
-          gestion,
+          vendeur,
         });
       })
       .catch((err) => console.log(err));
   } else {
     Usagers.findOne({ login: login, _id: { $ne: id } }).then((user) => {
       if (user) {
-        supprimerFichier(path);
+  
         errors.push({ msg: "Ce courriel existe déjà" });
         Usagers.findById(id)
           .exec()
@@ -220,10 +172,8 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
               usager,
               nom,
               login,
-              password,
-              password2,
               admin,
-              gestion,
+              vendeur,
             });
           })
           .catch((err) => console.log(err));
@@ -234,12 +184,12 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
             usager.nom = nom;
             usager.login = login;
             usager.role = roles;
-            if (password) {
+            /*if (password) {
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(password, salt, (err, hash) => {
                   if (err) throw err;
                   usager.pwd = hash;
-                  usager.fichierImage = conserverFichier(path, filename);
+                 
                   usager
                     .save()
                     .then((usager) => {
@@ -252,8 +202,8 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
                     .catch((err) => console.log(err));
                 });
               });
-            } else {
-              usager.fichierImage = conserverFichier(path, filename);
+            }*/ 
+             
               usager
                 .save()
                 .then((usager) => {
@@ -261,7 +211,7 @@ router.post("/editer/:id", estAdmin, (requete, reponse) => {
                   reponse.redirect("/usagers/menu");
                 })
                 .catch((err) => console.log(err));
-            }
+            
           })
           .catch((err) => console.log(err));
       }
@@ -276,16 +226,13 @@ router.get("/supprimer/:id", estAdmin, (requete, reponse) => {
   Usagers.findByIdAndDelete(id)
     .exec()
     .then((usager) => {
-      supprimerFichier(
-        nodeJSpath.join(__dirname, "../public", usager.fichierImage)
-      );
       requete.flash("success_msg", "Usager supprimé avec succès");
       reponse.redirect("/usagers/menu");
     })
     .catch((err) => console.log(err));
 });
 
-// Fonction pour conserver le fichier image dans le dossier public
+/*// Fonction pour conserver le fichier image dans le dossier public
 function conserverFichier(path, filename) {
   const newPath = nodeJSpath.join(__dirname, "../public/images", filename);
   fs.renameSync(path, newPath);
@@ -297,6 +244,6 @@ function supprimerFichier(path) {
   fs.unlink(path, (err) => {
     if (err) console.log(err);
   });
-}
+}*/
 
 module.exports = router;

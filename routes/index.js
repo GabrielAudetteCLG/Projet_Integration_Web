@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { estAuthentifie } = require("../config/auth");
 
 // Routes qui redirect a ma page de login si entré dans l'url (/, /index.html, /index)
 router.get("/", (requete, res) => res.redirect("/usagers/login"));
@@ -22,11 +23,15 @@ router.get("/accueil", (requete, reponse) => {
   reponse.render("accueil", { titre: "Accueil" });
 });
 // Get compte
-router.get("/compte", (requete, reponse) => {
+router.get("/compte", estAuthentifie, (requete, reponse) => {
   reponse.render("compte", {
     titre: "Compte",
     user: requete.user,
   });
+});
+// get checkout
+router.get("/checkout", estAuthentifie, (requete, reponse) => {
+  reponse.render("checkout", { titre: "Checkout" });
 });
 
 // Get du logout (déconnexion)
