@@ -15,13 +15,13 @@
           <% if (admin) { %>
           <div class="card-buttons d-flex justify-content-around">
             <a
-              href="/usagers/supprimer/<%= usagers._id %>"
+              href="/usagers/supprimer/<%= usager._id %>"
               onclick="return confirm('Etes-vous certain de vouloir supprimer <%= usagers.id %>?');"
             >
               <i class="fa-solid fa-trash-can liste-usager-on-hover" style="color: white;"></i>
             </a>
             <a
-              href="/usagers/editer/<%= usagers._id %>"
+              href="/usagers/editer/<%= usager._id %>"
       
             >
               <i class="fa fa-pencil-alt fa-fw liste-usager-on-hover" style="color: white;" ></i>
