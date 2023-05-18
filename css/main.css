@@ -279,7 +279,7 @@
   border-radius: 15px;
   background-color: var(--grey);
 }
-.liste-usager-card-body-style-card {
+.liste-usager-card-body-style {
   background-color: transparent;
   margin: auto;
   width: 13rem;
@@ -293,7 +293,7 @@
   border-radius: 15px;
   background-color: var(--grey);
 }
-.liste-article-card-body-style-card {
+.liste-article-card-body-style {
   background-color: transparent;
   margin: auto;
   width: 13rem;

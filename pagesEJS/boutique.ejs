@@ -75,19 +75,18 @@
 <script>
   const ajout = document.getElementById("ajout");
   const parent_button = document.getElementById("button");
-  const bgImage = document.getElementsByClassName(
-    "boutique-article-container"
-  ).backgroundImage;
+  const bg = document.getElementsByClassName("boutique-article-container")[0];
+  const bgStyles = window.getComputedStyle(bg);
+  const bgImage = bgStyles.backgroundImage;
   const panier = [];
   ajout.addEventListener("click", ajoutAuPanier);
   function ajoutAuPanier(e) {
     e.preventDefault();
-    console.log(bgImage);
     const article = {
       nom: parent_button.parentNode.querySelector("h1").innerHTML,
       details: parent_button.parentNode.querySelector("li").innerHTML,
       prix: parent_button.parentNode.querySelector("p").innerHTML,
-      imageFond: parent_button.parentNode.parentNode.querySelector("img").src,
+      imageFond: bgImage,
     };
     panier.push(article);
   }
