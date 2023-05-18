@@ -509,7 +509,6 @@ body {
   justify-content: center;
   height: 100%;
 }
-<<<<<<< HEAD
 
 /* Align container to center of page, takes 100% space, divide element by space evenly between each other (in top of each other) */
 .text-container {
@@ -583,8 +582,4 @@ option:first-child {
 
 /* FORM*/
 
-.container{
-  
-}
-=======
->>>>>>> 468d677bdf0b22002c3a647ce46a5530420cf769
+
