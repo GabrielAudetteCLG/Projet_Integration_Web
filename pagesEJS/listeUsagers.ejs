@@ -1,16 +1,27 @@
 <% let admin = user && user.role.includes('admin'); %>
 
 <div class="container">
-  <div class="row" style="margin: 5%;">
+  <div class="row" style="margin: 5%">
     <% usagers.forEach(function(usager) { %>
-    <div class= " col mb-5">
-      <div class="card style-cards liste-usager-card-body-style-card" style="width: 13rem">
-        <div class="card-body liste-usager-card-body"  >
-          <h5 class="card-title" style="text-align: center; color: white;"><%= usager.nom %></h5>
-          <p class="card-price" style="text-align: center; color: white;"><strong><%= usager.login %></strong></p>
+    <div class="col mb-5">
+      <div
+        class="card style-cards liste-usager-card-body-style-card"
+        style="width: 13rem"
+      >
+        <div class="card-body liste-usager-card-body">
+          <h5 class="card-title" style="text-align: center; color: white">
+            <%= usager.nom %>
+          </h5>
+          <p class="card-price" style="text-align: center; color: white">
+            <strong><%= usager.login %></strong>
+          </p>
           <div>
-            <h5 style="text-align: center; color: white;"><strong>Rôles</strong></h5>
-            <p class="card-price" style="text-align: center; color: white;"><%= usager.role %></p>
+            <h5 style="text-align: center; color: white">
+              <strong>Rôles</strong>
+            </h5>
+            <p class="card-price" style="text-align: center; color: white">
+              <%= usager.role %>
+            </p>
           </div>
           <% if (admin) { %>
           <div class="card-buttons d-flex justify-content-around">
@@ -18,13 +29,24 @@
               href="/usagers/supprimer/<%= usager._id %>"
               onclick="return confirm('Etes-vous certain de vouloir supprimer <%= usagers.id %>?');"
             >
-              <i class="fa-solid fa-trash-can liste-usager-on-hover" style="color: white;"></i>
+              <i
+                class="fa-solid fa-trash-can liste-usager-on-hover"
+                style="color: white"
+              ></i>
             </a>
+<<<<<<< HEAD
             <a
               href="/usagers/editer/<%= usager._id %>"
       
             >
               <i class="fa fa-pencil-alt fa-fw liste-usager-on-hover" style="color: white;" ></i>
+=======
+            <a href="/usagers/editer/<%= usager._id %>">
+              <i
+                class="fa fa-pencil-alt fa-fw liste-usager-on-hover"
+                style="color: white"
+              ></i>
+>>>>>>> efc51e659f363b58f88732c06f4db8cfb8590763
             </a>
           </div>
 
@@ -37,13 +59,5 @@
       </div>
     </div>
     <% }); %>
-  </div>
-</div>
-
-<div class="full-height">
-  <div class="container pt-4 pt-xl-5 pb-xl-5 articles_container">
-    <div class="row pt-5 pb-5">
-      <div class="col" style="text-align: left"></div>
-    </div>
   </div>
 </div>
