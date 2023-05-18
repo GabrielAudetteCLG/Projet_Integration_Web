@@ -1,15 +1,4 @@
-<div
-  style="
-    opacity: 0.8;
-    background-color: #333333;
-    color: darkgrey;
-    padding: 20px;
-    margin: auto;
-    width: 70%;
-    margin-top: 10%;
-    border-radius: 1%;
-  "
->
+<div class="usager-editer-container">
   <%- include ('./partiels/erreurs_msg') %> <%- include
   ('./partiels/erreurs_msg') %>
   <h4 class="text-center">Modifier un usager</h4>
@@ -56,11 +45,11 @@
 
       <div class="checkbox-wrapper">
         <div class="form-check">
-          <label class="form-check-label" for="normal">Client</label>
+          <label class="form-check-label" for="client">Client</label>
           <input
             type="checkbox"
             class="form-check-input"
-            id="normal"
+            id="client"
             checked
             disabled
           />
@@ -75,7 +64,7 @@
           <label class="form-check-label" for="vendeur">Vendeur</label>
           <input type="checkbox" class="form-check-input" id="vendeur"
           name="vendeur" <% if (usager.role.includes('vendeur')) { %> checked <%
-          } %> <%= typeof gestion != 'undefined' ? 'checked' : '' %> />
+          } %> <%= typeof vendeur != 'undefined' ? 'checked' : '' %> />
         </div>
       </div>
       <button type="submit" class="btn btn-success">
