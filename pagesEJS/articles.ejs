@@ -17,11 +17,9 @@
             alt="Image de <%= article.nom %>"
           />-->
           <p class="card-price" style="text-align: center; color: white"><strong><%= article.prix %> $</strong></p>
-          <h5 class="card-title text-center"><%= article.nom %></h5>
+        
           <!--<img src="/images/<%= article.imageFond %>" class="card-img-top" alt="Image de <%= article.nom %>" style="width: 100%; max-height: 200px; object-fit: cover" />-->
-          <p class="card-price text-center">
-            <strong><%= article.prix %> $</strong>
-          </p>
+          
           <% if (admin) { %>
             <div class="card-buttons d-flex justify-content-around">
             <a
@@ -51,10 +49,3 @@
   </div>
 </div>
 
-<div class="full-height">
-  <div class="container pt-4 pt-xl-5 pb-xl-5 articles_container">
-    <div class="row pt-5 pb-5">
-      <div class="col" style="text-align: left"></div>
-    </div>
-  </div>
-</div>
