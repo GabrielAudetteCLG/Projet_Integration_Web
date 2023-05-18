@@ -170,7 +170,7 @@
   width: 90% !important;
   margin: auto;
 }
-.ajouter-usager-input {
+.usager-ajouter-input {
   background-color: #444444;
   color: grey;
   width: 95%;
@@ -193,6 +193,59 @@
   margin-left: 10px;
 }
 .usager-ajouter-button {
+  margin: auto;
+}
+
+/* Page Ajouter Article */
+
+.ajouter-article-wrapper {
+  background-color: var(--grey);
+  color: var(--white);
+  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 15px;
+}
+@media screen and (max-width: 768px) {
+  .ajouter-article-wrapper {
+    max-width: none !important;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .ajouter-article-wrapper {
+    width: 50%;
+  }
+}
+
+.article-ajouter-form-wrapper {
+  width: 90% !important;
+  margin: auto;
+}
+.article-ajouter-input {
+  background-color: #444444;
+  color: grey;
+  width: 95%;
+  margin-right: 5%;
+  display: inline-block;
+}
+.article-ajouter-checkbox-container {
+  display: flex;
+  margin: auto;
+}
+.article-ajouter-label {
+  color: darkgray;
+  text-align: center;
+}
+.article-ajouter-roles {
+  display: flex;
+  align-items: center;
+}
+.article-ajouter-label-gris {
+  margin-left: 10px;
+}
+.article-ajouter-button {
   margin: auto;
 }
 
@@ -420,8 +473,8 @@ body {
 }
 .btn-outline-success {
   color: #76b900;
-border: none;
-border-radius: 20px;
+  border: none;
+  border-radius: 20px;
 }
 .btn-outline-success:hover {
   background-color: #76b900;
