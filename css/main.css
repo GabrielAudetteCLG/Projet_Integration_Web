@@ -47,7 +47,12 @@
   color: var(--white);
 }
 
+#button button {
+  background-color: transparent;
+  border: none;
+}
 #button:hover button {
+  background-color: transparent;
   color: var(--white);
 }
 
@@ -138,6 +143,7 @@
   padding: 20px;
   margin: auto;
   margin-top: 50px;
+  margin-bottom: 50px;
   border-radius: 15px;
 }
 @media screen and (max-width: 768px) {
@@ -165,19 +171,21 @@
 }
 .usager-ajouter-checkbox-container {
   display: flex;
-  align-items: left;
+  margin: auto;
 }
 .usager-ajouter-label {
   color: darkgray;
-  align-items: flex-start;
-  text-align: left;
-}
-.usager-ajouter-label {
-  color: darkgray;
+  text-align: center;
 }
 .usager-ajouter-roles {
   display: flex;
   align-items: center;
+}
+.usager-ajouter-label-gris {
+  margin-left: 10px;
+}
+.usager-ajouter-button {
+  margin: auto;
 }
 
 /* Usager editer */
@@ -331,7 +339,7 @@ body {
 }
 ::placeholder {
   text-align: center;
-  color: var(--white)
+  color: var(--white);
 }
 .form-group input {
   padding-top: 10px;
@@ -340,7 +348,7 @@ body {
   border-radius: 15px;
   border: none;
   text-align: center;
-  background-color: #535353;
+  background-color: #535353 !important;
 }
 .form-group input:focus {
   outline: none;

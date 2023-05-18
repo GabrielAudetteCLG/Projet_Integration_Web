@@ -65,17 +65,25 @@
           <div class="form-check usager-ajouter-roles form-check-inline">
             <input type="checkbox" class="form-check-input" id="admin"
             name="admin" <%= typeof admin != 'undefined' ? 'checked' : '' %> />
-            <label class="form-check-label" for="admin">Admin</label>
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="admin"
+              >Admin</label
+            >
           </div>
           <div class="form-check usager-ajouter-roles form-check-inline">
             <input type="checkbox" class="form-check-input" id="vendeur"
             name="vendeur" <%= typeof vendeur != 'undefined' ? 'checked' : '' %>
             />
-            <label class="form-check-label" for="vendeur">Vendeur</label>
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="vendeur"
+              >Vendeur</label
+            >
           </div>
         </div>
       </div>
-      <div class="button" id="button">
+      <div class="button usager-ajouter-button" id="button">
         <div id="slide"></div>
         <button type="submit">Ajouter l'usager</button>
       </div>
