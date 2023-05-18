@@ -1,17 +1,54 @@
 <main class="boutique-main">
-  <div>
-    <h1>GeForce RTX 3080 TI</h1>
-    <ul>
-      <li>11GB 352-Bit GDDR6</li>
-      <li>1 x HDMI 2.0b 3x DisplayPort 1.4</li>
-      <li>Boost Clock 1635 MHz</li>
-      <li>4352 CUDA cores</li>
-      <li>450$</li>
-    </ul>
-    <div class="button" id="button">
-      <div id="slide"></div>
-      <a href="/checkout">J'achète</a>
+  <div class="container boutique-searchbar-container">
+    <div class="row my-3">
+      <div class="col-md-4">
+        <form class="d-flex">
+          <input class="form-control me-2 barre-de-recherche" type="search" placeholder="Recherche" aria-label="Recherche">
+          <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle barre-de-recherche btn-outline-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-filter"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Option 1</a></li>
+            <li><a class="dropdown-item" href="#">Option 2</a></li>
+            <li><a class="dropdown-item" href="#">Option 3</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle barre-de-recherche btn-outline-success" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-list-ul"></i> Catégorie
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" href="#">Catégorie 1</a></li>
+            <li><a class="dropdown-item" href="#">Catégorie 2</a></li>
+            <li><a class="dropdown-item" href="#">Catégorie 3</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="container boutique-article-container">
+    <div class="container">
+      <div class="product-wrapper">
+        <h1>GeForce RTX 3080 TI</h1>
+        <ul>
+          <li>11GB 352-Bit GDDR6</li>
+          <li>1 x HDMI 2.0b 3x DisplayPort 1.4</li>
+          <li>Boost Clock 1635 MHz</li>
+          <li>4352 CUDA cores</li>
+          <li>450$</li>
+        </ul>
+        <div class="button" id="button">
+          <div id="slide"></div>
+          <a href="/checkout">J'achète</a>
+        </div>
+      </div>
+    </div>
   </div>
 </main>

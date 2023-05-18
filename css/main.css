@@ -109,7 +109,15 @@
 
 /* Page Boutique */
 
-.boutique-main {
+/* .boutique-main {
+  background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
+  height: 100vh;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  margin: 0 100px 0 100px;
+} */
+.boutique-article-container {
   background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
   height: 100vh;
   max-width: 100vw;
@@ -361,6 +369,25 @@ body {
   text-align: start;
 }
 .table {
+  color: white;
+}
+
+/* Search bar css **/
+.barre-de-recherche {
+  background-color: #000;
+  border-radius: 20px;
+}
+.barre-de-recherche input {
+  background-color: #000;
+  border: none;
+}
+.btn-outline-success {
+  color: #76b900;
+border: none;
+border-radius: 20px;
+}
+.btn-outline-success:hover {
+  background-color: #76b900;
   color: white;
 }
 
