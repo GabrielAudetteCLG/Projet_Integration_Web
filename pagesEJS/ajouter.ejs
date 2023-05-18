@@ -52,7 +52,7 @@
             <input
               type="checkbox"
               class="form-check-input"
-              id="normal"
+              id="client"
               checked
               disabled
             />
@@ -68,14 +68,17 @@
             <label class="form-check-label" for="admin">Admin</label>
           </div>
           <div class="form-check usager-ajouter-roles form-check-inline">
-            <input type="checkbox" class="form-check-input" id="gestion"
-            name="gestion" <%= typeof gestion != 'undefined' ? 'checked' : '' %>
+            <input type="checkbox" class="form-check-input" id="vendeur"
+            name="vendeur" <%= typeof vendeur != 'undefined' ? 'checked' : '' %>
             />
-            <label class="form-check-label" for="gestion">Vendeur</label>
+            <label class="form-check-label" for="vendeur">Vendeur</label>
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-success">Ajouter l'usager</button>
+      <div class="button" id="button">
+        <div id="slide"></div>
+        <button type="submit">Ajouter l'usager</button>
+      </div>
     </div>
   </form>
 </div>

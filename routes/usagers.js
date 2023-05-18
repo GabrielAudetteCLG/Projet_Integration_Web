@@ -10,7 +10,7 @@ const { estAuthentifie, estAdmin } = require("../config/auth");
 
 
 // Route get menu usagers
-router.get("/", /*estAuthentifie,*/ (requete, reponse) => {
+router.get("/", estAuthentifie, (requete, reponse) => {
   reponse.render("usagers", {
     titre: "Menu de gestion des usagers",
     user: requete.user,
@@ -27,7 +27,7 @@ router.post("/login", (req, rep, next) => {
 });
 
 // Route get liste des usagers
-router.get("/menu", /*estAuthentifie,*/ (requete, reponse) => {
+router.get("/menu", estAuthentifie, (requete, reponse) => {
   console.log(requete.user);
   Usagers.find({}, null, { sort: { login: 1 } })
     .exec()
