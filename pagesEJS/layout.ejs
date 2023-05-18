@@ -24,6 +24,9 @@
       .active {
         color: #76b900 !important;
       }
+      .active-icon {
+        color: #76b900 !important;
+      }
     </style>
     <title>
       <% if(typeof(titre)!=="undefined") { %> <%= titre %> <% } else { %> Titre
@@ -41,7 +44,7 @@
         </div>
         <div>
           <a href="/checkout" class="navbar-brand">
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart" id="cart-icon" style="color: white;"></i>
           </a>
         </div>
         <div>
@@ -98,6 +101,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const navbarLinks = document.querySelectorAll(".navbar-brand");
+        const cartIcon = document.getElementById("cart-icon");
         const currentPath = window.location.pathname;
 
         // Mettre en surbrillance le lien actif dans la barre de navigation
@@ -108,6 +112,12 @@
             link.classList.remove("active");
           }
         });
+
+        if (currentPath === "/checkout") {
+          cartIcon.classList.add("active-icon");
+        } else {
+          cartIcon.classList.remove("active-icon");
+        }
       });
     </script>
     <script>
@@ -127,7 +137,7 @@
 
         chatbotInput.value = "";
 
-        // Afficher le message de l'utilisateur
+        // Afficher le message del'utilisateur
         const userMessage = document.createElement("div");
         userMessage.textContent = message;
         userMessage.classList.add("chatbot-message-sent"); // Ajouter la classe CSS pour les messages envoyés
