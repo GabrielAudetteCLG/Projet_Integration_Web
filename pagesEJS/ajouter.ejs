@@ -6,43 +6,43 @@
       <div class="form-group">
         <input
           type="text"
-          class="form-control"
+          class="form-control usager-ajouter-form-input"
           name="nom"
           id="nom"
           aria-describedby="emailHelp"
           placeholder="nom"
           value="<%= typeof nom != 'undefined' ? nom : '' %>"
-          class="ajouter-usager-input"
+          class="usager-ajouter-input"
         />
         <input
           type="email"
-          class="form-control"
+          class="form-control usager-ajouter-form-input"
           name="login"
           id="login"
           aria-describedby="emailHelp"
           placeholder="Login"
           value="<%= typeof login != 'undefined' ? login : '' %>"
-          class="ajouter-usager-input"
+          class="usager-ajouter-input"
         />
       </div>
       <div class="form-group">
         <input
           type="password"
-          class="form-control"
+          class="form-control usager-ajouter-form-input"
           id="password"
           name="password"
           placeholder="Mot de passe"
           value="<%= typeof password != 'undefined' ? password : '' %>"
-          class="ajouter-usager-input"
+          class="usager-ajouter-input"
         />
         <input
           type="password"
-          class="form-control"
+          class="form-control usager-ajouter-form-input"
           name="password2"
           id="password2"
           placeholder="Confirmez le mot de passe"
           value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-          class="ajouter-usager-input"
+          class="usager-ajouter-input"
         />
       </div>
       <div class="form-group">
@@ -65,17 +65,25 @@
           <div class="form-check usager-ajouter-roles form-check-inline">
             <input type="checkbox" class="form-check-input" id="admin"
             name="admin" <%= typeof admin != 'undefined' ? 'checked' : '' %> />
-            <label class="form-check-label" for="admin">Admin</label>
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="admin"
+              >Admin</label
+            >
           </div>
           <div class="form-check usager-ajouter-roles form-check-inline">
             <input type="checkbox" class="form-check-input" id="vendeur"
             name="vendeur" <%= typeof vendeur != 'undefined' ? 'checked' : '' %>
             />
-            <label class="form-check-label" for="vendeur">Vendeur</label>
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="vendeur"
+              >Vendeur</label
+            >
           </div>
         </div>
       </div>
-      <div class="button" id="button">
+      <div class="button usager-ajouter-button" id="button">
         <div id="slide"></div>
         <button type="submit">Ajouter l'usager</button>
       </div>
