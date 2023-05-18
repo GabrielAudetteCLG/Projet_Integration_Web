@@ -1,26 +1,36 @@
 <% let admin = user && user.role.includes('admin'); %>
 
-
 <div class="container">
   <div class="row">
     <% articles.forEach(function(article) { %>
     <div class="col-md-3 mb-5">
-      <div class="card style-cards" style="width: 10rem;">
-       <!--<div class="card-img-top" style="background-image: url('<%= article.imageFond %>')"></div>--> 
+      <div class="card style-cards" style="width: 10rem">
+        <!--<div class="card-img-top" style="background-image: url('<%= article.imageFond %>')"></div>-->
         <div class="card-body">
-          <h5 class="card-title text-center"><%= article.nom %></h5>
-          <!--<img src="/images/<%= article.imageFond %>" class="card-img-top" alt="Image de <%= article.nom %>" style="width: 100%; max-height: 200px; object-fit: cover" />--> 
-          <p class="card-price text-center"><strong><%= article.prix %> $</strong></p>
+          <h5 class="card-title"><%= article.nom %></h5>
+          <img
+            src="<%= article.image %>"
+            class="card-img-top ajouter-article-card-img"
+            alt="Image de <%= article.nom %>"
+          />
+          <p class="card-price"><strong><%= article.prix %> $</strong></p>
           <% if (admin) { %>
-            <div class="card-buttons d-flex justify-content-between">
-              <a href="/articles/supprimer/<%= article._id %>" class="btn btn-danger" onclick="return confirm('Etes-vous certain de vouloir supprimer <%= article.nom %>?');">
-                <i class="fa-solid fa-trash-can"></i>
-              </a>
-              <a href="/articles/editer/<%= article._id %>" class="btn btn-secondary">
-                <i class="fa fa-pencil-alt fa-fw"></i>
-              </a>
-            </div>
-            
+          <div class="card-buttons d-flex justify-content-between">
+            <a
+              href="/articles/supprimer/<%= article._id %>"
+              class="btn btn-danger"
+              onclick="return confirm('Etes-vous certain de vouloir supprimer <%= article.nom %>?');"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </a>
+            <a
+              href="/articles/editer/<%= article._id %>"
+              class="btn btn-secondary"
+            >
+              <i class="fa fa-pencil-alt fa-fw"></i>
+            </a>
+          </div>
+
           <% } else { %>
           <div class="card-buttons">
             <a href="#" class="btn btn-primary">Ajouter au panier</a>

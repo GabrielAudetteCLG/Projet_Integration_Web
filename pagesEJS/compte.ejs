@@ -1,25 +1,19 @@
-<div class="full-height">
-  <div class="container pt-4 pt-xl-5 pb-xl-5 compte_container">
-    <div class="row pt-5 pb-5">
-      <div class="col column_card">
-        <div class="card card_info_compte">
-          <div class="card-body" style="text-align: center; color: white">
-            <h4 class="card-title" style="text-align: center; margin: 30px">
-              <%= user.nom %>
-            </h4>
-            <h4 class="card-title" style="text-align: center; margin: 30px">
-              <%= user.role.length > 1 ? 'Role' : 'Role' %> <% if
-              (user.role.length > 1) { %> (s) <% } %>
-            </h4>
-            <h4 class="card-title" style="text-align: center; margin: 30px">
-              <% user.role.forEach(function(role) { %>
-              <p><%= role %></p>
-              <% }); %>
-            </h4>
-            <h4 class="card-title" style="text-align: center; margin: 30px">
-              <%= user.login %>
-            </h4>
-          </div>
+<div class="container pt-4 pt-xl-5 pb-xl-5 info-compte-container">
+  <div class="row pt-5 pb-5">
+    <div class="col info-compte-column-card">
+      <div class="card info-compte-card">
+        <div class="card-body info-compte-card-body">
+          <h4 class="card-title info-compte-card-title"><%= user.nom %></h4>
+          <h4 class="card-title">
+            <%= user.role.length > 1 ? 'Role' : 'Role' %> <% if
+            (user.role.length > 1) { %> (s) <% } %>
+          </h4>
+          <h4 class="card-title">
+            <% user.role.forEach(function(role) { %>
+            <p><%= role %></p>
+            <% }); %>
+          </h4>
+          <h4 class="card-title mt-4"><%= user.login %></h4>
         </div>
       </div>
     </div>
