@@ -26,7 +26,7 @@ router.post("/login", (req, rep, next) => {
 });
 
 // Route get liste des usagers
-router.get("/menu", estAuthentifie,  (requete, reponse) => {
+router.get("/menu", estAuthentifie, estAdmin, (requete, reponse) => {
   console.log(requete.user);
   Usagers.find({}, null, { sort: { login: 1 } })
     .exec()

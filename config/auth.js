@@ -16,11 +16,12 @@ module.exports = {
           "error_msg",
           'Vous devez être "admin" pour accéder à cette page'
         );
+        console.log("req.user :", req.user)
         rep.redirect("/usagers");
       }
     }
-    req.flash("error_msg", "Connectez-vous pour accéder au site");
-    rep.redirect("/");
+   // req.flash("error_msg", "Connectez-vous pour accéder au site");
+    //rep.redirect("/");
   },
   estVendeur: function (req, rep, next) {
     if (req.isAuthenticated()) {
@@ -35,9 +36,10 @@ module.exports = {
         rep.redirect("/articles");
       }
     }
-    req.flash("error_msg", "Connectez-vous pour accéder au site");
-    rep.redirect("/");
+    //req.flash("error_msg", "Connectez-vous pour accéder au site");
+    //rep.redirect("/");
   },
+  
   forwardAuthenticated: function (req, rep, next) {
     if (!req.isAuthenticated()) {
       return next();

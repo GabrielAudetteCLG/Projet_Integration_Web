@@ -26,7 +26,7 @@ router.get("/", estAuthentifie, (req, res) => {
 
 // Route pour afficher la liste des articles
 
-router.get("/menu", estAuthentifie, (requete, res) => {
+router.get("/menu", estAuthentifie, estVendeur, (requete, res) => {
   console.log(requete.user);
   Articles.find({}, null, { sort: { nom: 1 } })
     .exec()
