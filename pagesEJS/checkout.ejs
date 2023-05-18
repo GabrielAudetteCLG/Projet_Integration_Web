@@ -1,9 +1,64 @@
+<!-- <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const panier = JSON.parse(urlParams.get("panier"));
+  console.log("panier");
+  panier.forEach(function (item) {
+    console.log(item);
+  });
+</script> -->
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const panier = JSON.parse(urlParams.get("panier"));
+  console.log("panier");
+  panier.forEach(function (item) {
+    console.log(item);
+    // Create a new element for each item in the panier
+    let newElement = document.createElement("div");
+    newElement.className = "card checkout-card-product-single";
+    newElement.style.borderRadius = "25px";
+    newElement.style.background = "grey";
+    // Populate the new element with the relevant information
+    newElement.innerHTML = `
+      <div style="display: flex">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+          "
+        >
+          <img
+            class="checkout-product-image"
+            src="${item.image}"
+            alt="image produit"
+          />
+        </div>
+        <div style="padding-left: 40px">
+          <h4>${item.name}</h4>
+          <div class="checkout-card-price-container">
+            <p class="checkout-discounted-price" style="margin: 10px 0">
+              ${item.discountedPrice}
+            </p>
+            <p class="checkout-original-price" style="margin: 10px 0">
+              ${item.originalPrice}
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+    // Append the new element to the checkout-card-product div
+    document.querySelector(".checkout-card-product").appendChild(newElement);
+  });
+</script>
 <div class="container checkout-container pt-4 pt-xl-5">
   <div class="row pt-5">
     <div class="col-md-8 col-xl-6 text-center text-md-start mx-auto">
       <div class="text-center"></div>
       <form>
         <div>
+          <h1 style="font-weight: bold">Checkout</h1>
           <h1 style="font-weight: bold">Checkout</h1>
           <div>
             <input
@@ -91,7 +146,7 @@
               </div>
             </div>
           </div>
-          <div class="card checkout-card-product" style>
+          <div class="card checkout-card-product-single" style>
             <div
               class="card-body"
               style="border-radius: 25px; background: grey"
