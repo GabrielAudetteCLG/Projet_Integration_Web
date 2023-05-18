@@ -130,12 +130,11 @@ router.get("/ajouter", estVendeur, (req, res) => {
   res.render("articlesAjouter", { titre: "Ajouter un produit" });
 });
 
-// Route pour traiter la soumission du formulaire d'ajout d'un article
 router.post("/ajouter", estVendeur, (requete, reponse) => {
   const { nom, marque, prix, details } = requete.body;
   const { originalname, destination, filename, size, path, mimetype } =
     requete.files[0];
-  const maxFileSize = 1024 * 10;
+  const maxFileSize = 1024 * 1000;
   const mimetypePermis = [
     "image/png",
     "image/jpg",
@@ -151,7 +150,8 @@ router.post("/ajouter", estVendeur, (requete, reponse) => {
 
   if (size > maxFileSize) {
     errors.push({
-      msg: `La taille du fichier est trop grande (max ${maxFileSize} octets)`,
+      msg: `La taille du fichier est trop grande (max ${maxFileSize} octets)
+      `,
     });
   } else if (!mimetypePermis.includes(mimetype)) {
     errors.push({ msg: "Format de fichier non accepté" });
@@ -163,7 +163,7 @@ router.post("/ajouter", estVendeur, (requete, reponse) => {
       errors,
       titre: "Ajout d'un article",
       nom,
-      image,
+      image: filename, // Utilisez 'filename' à la place de 'image'
       marque,
       prix,
       details,
@@ -177,7 +177,7 @@ router.post("/ajouter", estVendeur, (requete, reponse) => {
           errors,
           titre: "Ajout d'un article",
           nom,
-
+          image: filename, // Utilisez 'filename' à la place de 'image'
           marque,
           prix,
           details,
@@ -185,13 +185,11 @@ router.post("/ajouter", estVendeur, (requete, reponse) => {
       } else {
         const nouvelArticle = new Articles({
           nom,
-
+          image: filename, // Utilisez 'filename' à la place de 'image'
           marque,
           prix,
           details,
         });
-
-        //console.log('imageFond:', image);
 
         console.log("nouvelArticle:", nouvelArticle);
 
