@@ -180,6 +180,22 @@
   align-items: center;
 }
 
+/* Page liste usager */
+.liste-usager-card-body {
+  border-radius: 15px;
+  background-color:var(--grey);
+}
+.liste-usager-card-body-style-card {
+  background-color: transparent;
+}
+.liste-usager-on-hover:hover {
+  background-color: var(--green);
+}
+
+
+
+
+
 /* Page Checkout */
 
 .checkout-product-image {

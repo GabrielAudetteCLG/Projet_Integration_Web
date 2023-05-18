@@ -1,53 +1,49 @@
- <% let admin = user.role.includes('admin'); %> 
-<h1 class="text-center">Liste des usagers</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table class="table table-image">
-        <thead>
-          <% usagers.forEach(function(usager) { %>
-          <tr>
-            <th scope="col">Avatar</th>
-            <th scope="col">Login</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Roles</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="w-25">
-              <img
-                src="/images/<%=usager.fichierImage%>"
-                class="img-fluid img-thumbnail"
-                alt="Avatar"
-              />
-            </td>
-            <th scope="row"><%= usager.login %></th>
-            <td><%= usager.nom %></td>
-            <td>
-              <%= usager.role.length > 1 ? '(': '' %> <%=
-              usager.role.indexOf('admin')!==-1?'A':'' %> <%=
-              usager.role.indexOf('vendeur')!==-1?'V':'' %> <%=
-              usager.role.length > 1 ? ')': '' %>
-            </td>
-            <td>
-              <% if (admin) { %>
-              <a
-                href="/usagers/supprimer/<%= usager._id %>"
-                onclick="return confirm('Etes-vous certain de vouloir supprimer cette fiche?');"
-                ><i class="fa fa-trash"></i
-              ></a>
-              <a href="/usagers/editer/<%= usager._id %>"
-                ><i class="fa fa-pencil-alt fa-fw"></i
-              ></a>
+<% let admin = user && user.role.includes('admin'); %>
 
-              <% } %>
-            </td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
+<div class="container">
+  <div class="row" style="margin: 5%;">
+    <% usagers.forEach(function(usager) { %>
+    <div class= " col mb-5">
+      <div class="card style-cards liste-usager-card-body-style-card" style="width: 13rem">
+        <div class="card-body liste-usager-card-body"  >
+          <h5 class="card-title" style="text-align: center; color: white;"><%= usager.nom %></h5>
+          <p class="card-price" style="text-align: center; color: white;"><strong><%= usager.login %></strong></p>
+          <div>
+            <h5 style="text-align: center; color: white;"><strong>Rôles</strong></h5>
+            <p class="card-price" style="text-align: center; color: white;"><%= usager.role %></p>
+          </div>
+          <% if (admin) { %>
+          <div class="card-buttons d-flex justify-content-around">
+            <a
+              href="/usagers/supprimer/<%= usagers._id %>"
+              onclick="return confirm('Etes-vous certain de vouloir supprimer <%= usagers.id %>?');"
+            >
+              <i class="fa-solid fa-trash-can liste-usager-on-hover" style="color: white;"></i>
+            </a>
+            <a
+              href="/usagers/editer/<%= usagers._id %>"
+      
+            >
+              <i class="fa fa-pencil-alt fa-fw liste-usager-on-hover" style="color: white;" ></i>
+            </a>
+          </div>
+
+          <% } else { %>
+          <div class="card-buttons">
+            <a href="#" class="btn btn-primary">Ajouter au panier</a>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</div>
+
+<div class="full-height">
+  <div class="container pt-4 pt-xl-5 pb-xl-5 articles_container">
+    <div class="row pt-5 pb-5">
+      <div class="col" style="text-align: left"></div>
     </div>
   </div>
 </div>
