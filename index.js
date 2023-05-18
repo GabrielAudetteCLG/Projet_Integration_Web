@@ -2,7 +2,7 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const app = express();
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 8008;
+const PORT = process.env.PORT || 8000;
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
@@ -36,9 +36,9 @@ app.post("/chatbot", express.json(), async (req, res) => {
     res.json({ message: chatbotReply });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "Erreur lors de la communication avec l'assistant virtuel" });
+    res.status(500).json({
+      message: "Erreur lors de la communication avec l'assistant virtuel",
+    });
   }
 });
 
@@ -51,8 +51,6 @@ const storage = multer.diskStorage({
   },
 });
 app.use(upload.any());
-
-
 
 // Connexion a la base de données
 mongoose.set("strictQuery", false);
@@ -94,15 +92,13 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-
 // Route pour les messages flash
-app.get('/', (req, res) => {
-  req.flash('success_msg', 'Message flash de succès');
-  req.flash('error_msg', 'Message flash d\'erreur');
-  req.flash('error', 'Une erreur s\'est produite');
+app.get("/", (req, res) => {
+  req.flash("success_msg", "Message flash de succès");
+  req.flash("error_msg", "Message flash d'erreur");
+  req.flash("error", "Une erreur s'est produite");
 
-  res.render('login');
+  res.render("login");
 });
 
 app.use("/css", express.static("./css"));
