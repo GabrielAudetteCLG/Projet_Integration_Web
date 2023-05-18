@@ -1,75 +1,84 @@
-<div class="usager-editer-container">
-  <%- include ('./partiels/erreurs_msg') %> <%- include
-  ('./partiels/erreurs_msg') %>
+<div class="ajouter-usager-wrapper">
+  <%- include ('./partiels/erreurs_msg') %>
   <h4 class="text-center">Modifier un usager</h4>
-
-  <form
-    action="/usagers/editer/<%=usager.id%>"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <div class="form-wrapper">
+  <form action="/usagers/editer/<%=usager.id%>" method="POST" enctype="multipart/form-data">
+    <div class="form-wrapper usager-ajouter-form-wrapper">
       <div class="form-group">
-        <label for="id">Id</label>
         <input
           type="text"
+          class="form-control usager-ajouter-form-input"
           name="id"
           id="id"
+          aria-describedby="emailHelp"
+          placeholder="<%=usager.id%>"
           value="<%=usager.id%>"
-          readonly
-          class="form-control"
+          disabled
+          class="usager-ajouter-input"
         />
-      </div>
-      <div class="form-group">
-        <label for="login">Login</label>
         <input
           type="text"
-          name="login"
-          id="login"
-          value="<%= typeof login != 'undefined' ? login : '' %>"
-          placeholder="<%=usager.login%>"
-          class="form-control"
-        />
-      </div>
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input
-          type="text"
-          class="form-control"
-          id="nom"
+          class="form-control usager-ajouter-form-input"
           name="nom"
+          id="nom"
+          aria-describedby="emailHelp"
           placeholder="<%=usager.nom%>"
           value="<%= typeof nom != 'undefined' ? nom : '' %>"
+          class="usager-ajouter-input"
+        />
+        <input
+          type="email"
+          class="form-control usager-ajouter-form-input"
+          name="login"
+          id="login"
+          aria-describedby="emailHelp"
+          placeholder="<%=usager.login%>"
+          value="<%= typeof login != 'undefined' ? login : '' %>"
+          class="usager-ajouter-input"
         />
       </div>
-
-      <div class="checkbox-wrapper">
-        <div class="form-check">
-          <label class="form-check-label" for="client">Client</label>
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="client"
-            checked
-            disabled
-          />
-        </div>
-        <div class="form-check">
-          <label class="form-check-label" for="admin">Admin</label>
-          <input type="checkbox" class="form-check-input" id="admin"
-          name="admin"<% if (usager.role.includes('admin')) { %> checked <% } %>
-          <%= typeof admin != 'undefined' ? 'checked' : '' %> />
-        </div>
-        <div class="form-check">
-          <label class="form-check-label" for="vendeur">Vendeur</label>
-          <input type="checkbox" class="form-check-input" id="vendeur"
-          name="vendeur" <% if (usager.role.includes('vendeur')) { %> checked <%
-          } %> <%= typeof vendeur != 'undefined' ? 'checked' : '' %> />
+        <label class="usager-ajouter-label">Rôles</label>
+        <div class="usager-ajouter-checkbox-container">
+          <div class="form-check usager-ajouter-roles form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="client"
+              checked
+              disabled
+            />
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="client"
+              >Client</label
+            >
+          </div>
+          <div class="form-check usager-ajouter-roles form-check-inline">
+            <input type="checkbox" class="form-check-input" id="admin"
+            name="admin"<% if (usager.role.includes('admin')) { %> checked <% } %>
+            <%= typeof admin != 'undefined' ? 'checked' : '' %> />
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="admin"
+              >Admin</label
+            >
+          </div>
+          <div class="form-check usager-ajouter-roles form-check-inline">
+            <input type="checkbox" class="form-check-input" id="vendeur"
+            name="vendeur" <% if (usager.role.includes('vendeur')) { %> checked <%
+            } %> <%= typeof gestion != 'undefined' ? 'checked' : '' %>
+            />
+            <label
+              class="form-check-label usager-ajouter-label-gris"
+              for="vendeur"
+              >Vendeur</label
+            >
+          </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-success">
-        Modifier l'utilisateur
-      </button>
+      <div class="button usager-ajouter-button" id="button">
+        <div id="slide"></div>
+        <button type="submit">Modifier l'usager</button>
+      </div>
     </div>
   </form>
 </div>

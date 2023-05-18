@@ -32,7 +32,7 @@ module.exports = {
           "error_msg",
           'Vous devez être "vendeur" pour accéder à cette page'
         );
-        rep.redirect("/usagers");
+        rep.redirect("/articles");
       }
     }
     req.flash("error_msg", "Connectez-vous pour accéder au site");
