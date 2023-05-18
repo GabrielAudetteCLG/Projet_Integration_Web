@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 let schemaArticles = mongoose.Schema({
-  _id: {
-    type: String,
-    required: true,
-  },
+ 
   nom: {
     type: String,
     required: false,
@@ -12,7 +9,7 @@ let schemaArticles = mongoose.Schema({
   imageFond: {
     type: String,
     required: true,
-    default: " ",
+    default: "images/2080_ti.jpg",
   },
   marque: {
     type: String,

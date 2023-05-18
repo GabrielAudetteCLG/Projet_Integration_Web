@@ -1,87 +1,84 @@
 
-<body>
+<div>
   <%- include ('./partiels/erreurs_msg') %>
   
-  <h1 class="text-center">Modifier un article</h1>
-  
+  <div
+    class="border-secondary d-flex flex-column justify-content-center align-items-center"
+  >
+  <div class="bg-dark" style="background-color: rgba(0, 0, 0, 0.5)">
+    <div class="border border-secondary">
+  <h3 class="text-center"><%= article && article.marque ? article.marque : '' %> <%= article.nom %></h3>
   <form action="/articles/editer" method="POST" enctype="multipart/form-data">
-    <div class="form-wrapper">
-      <div class="form-group">
-        <label for="_id">ID</label>
-        <input
-          type="text"
-          name="_id"
-          id="_id"
-          value="<%= article && article._id ? article._id : '' %>"
-          placeholder="Entrez l'ID de l'article"
-          class="form-control"
-          readonly
-        />
-      </div>
+    
+      
       
       <div class="form-group">
-        <label for="nom">Nom</label>
         <input
           type="text"
           name="nom"
           id="nom"
           value="<%= article && article.nom ? article.nom : '' %>"
-          placeholder="Entrez le nom de l'article"
-          class="form-control"
+          placeholder="Nom"
+          
         />
       </div>
       
       <div class="form-group">
-        <label for="imageFond">Image de fond</label>
         <input
-          type="text"
+          type="file"
           name="imageFond"
           id="imageFond"
           value="<%= article && article.imageFond ? article.imageFond : '' %>"
-          placeholder="Entrez l'URL de l'image de fond"
-          class="form-control"
+          placeholder="Image de fond"
+         
         />
       </div>
       
       <div class="form-group">
-        <label for="marque">Marque</label>
-        <input
-          type="text"
-          name="marque"
-          id="marque"
-          value="<%= article && article.marque ? article.marque : '' %>"
-          placeholder="Entrez la marque de l'article"
-          class="form-control"
-        />
+        <select name="marque" id="marque">
+          <option value="">Marque</option>
+          <option value="ASUS">ASUS</option>
+          <option value="NVIDIA">NVIDIA</option>
+          <option value="PowerColor (Tul)">PowerColor (Tul)</option>
+          <option value="Sapphire">Sapphire</option>
+          <option value="Leadtek">Leadtek</option>
+          <option value="HIS">HIS</option>
+          <option value="AMD">AMD</option>
+          <option value="GIGABYTE">GIGABYTE</option>
+        </select>
       </div>
       
       <div class="form-group">
-        <label for="prix">Prix</label>
         <input
           type="number"
           name="prix"
           id="prix"
           value="<%= article && article.prix ? article.prix : '' %>"
-          placeholder="Entrez le prix de l'article"
-          class="form-control"
+          placeholder="Prix"
+         
         />
       </div>
       
       <div class="form-group">
-        <label for="details">Détails</label>
         <textarea
           name="details"
           id="details"
-          placeholder="Entrez les détails de l'article"
-          class="form-control"
+          placeholder="Listez les détails"
         ><%= article && article.details ? article.details : '' %></textarea>
       </div>
       
-      <button type="submit" class="btn btn-primary">
-        Modifier l'article
-      </button>
-    </div>
+    
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">
+          Modifier l'article
+        </button>
+      </div>
+    
   </form>
+</div>
+</div>
+</div>
+
   <a href="/menu" class="btn btn-secondary col-2">Retour au menu</a>
-</body>
+</div>
 

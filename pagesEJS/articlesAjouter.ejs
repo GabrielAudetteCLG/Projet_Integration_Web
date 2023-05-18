@@ -1,75 +1,83 @@
-
-<body>
+<div>
   <%- include ('./partiels/erreurs_msg') %>
-  
-  <h1 class="text-center">Ajouter un article</h1>
-  
-  <form action="/articles/ajouter" method="POST" enctype="multipart/form-data">
-    <div class="form-wrapper">
-    
-      
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input
-          type="text"
-          name="nom"
-          id="nom"
-          placeholder="Entrez le nom de l'article"
-          class="form-control"
-          required
-        />
-      </div>
-      
-      <div class="form-group">
-        <label for="imageFond">Image de fond</label>
-        <input
-          type="text"
-          name="imageFond"
-          id="imageFond"
-          placeholder="Entrez l'URL de l'image de fond"
-          class="form-control"
-          required
-        />
-      </div>
-      
-      <div class="form-group">
-        <label for="marque">Marque</label>
-        <input
-          type="text"
-          name="marque"
-          id="marque"
-          placeholder="Entrez la marque de l'article"
-          class="form-control"
-        />
-      </div>
-      
-      <div class="form-group">
-        <label for="prix">Prix</label>
-        <input
-          type="number"
-          name="prix"
-          id="prix"
-          placeholder="Entrez le prix de l'article"
-          class="form-control"
-        />
-      </div>
-      
-      <div class="form-group">
-        <label for="details">Détails</label>
-        <textarea
-          name="details"
-          id="details"
-          placeholder="Entrez les détails de l'article"
-          class="form-control"
-        ></textarea>
-      </div>
-      
-      <button type="submit" class="btn btn-primary">
-        Ajouter l'article
-      </button>
-    </div>
-  </form>
-  
-  <a href="/menu" class="btn btn-secondary col-2">Retour au menu</a>
-</body>
 
+  <div
+    class="border-secondary d-flex flex-column justify-content-center align-items-center"
+  >
+    <div class="bg-dark" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="border border-secondary">
+        <h3 class="text-center">Ajouter un produit</h3>
+        <form
+          action="/articles/ajouter"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div >
+            <div class="form-group">
+              <input
+                type="text"
+                name="nom"
+                id="nom"
+                placeholder="Nom"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="file"
+                name="imageFond"
+                id="imageFond"
+                accept="image/png, image/jpg, image/jpeg, image/gif, image/webp"
+                placeholder="Image de fond"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <select name="marque" id="marque" required>
+                <option value="">Marque</option>
+                <option value="ASUS">ASUS</option>
+                <option value="NVIDIA">NVIDIA</option>
+                <option value="PowerColor (Tul)">PowerColor (Tul)</option>
+                <option value="Sapphire">Sapphire</option>
+                <option value="Leadtek">Leadtek</option>
+                <option value="HIS">HIS</option>
+                <option value="AMD">AMD</option>
+                <option value="GIGABYTE">GIGABYTE</option>
+                
+              </select>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="number"
+                name="prix"
+                id="prix"
+                placeholder="Prix..."
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <textarea
+                name="details"
+                id="details"
+                placeholder="Listez les détails"
+                required
+              ></textarea>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-success">
+                Ajouter le produit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <a href="/menu" class="btn btn-secondary col-2">Retour au menu</a>
+</div>
