@@ -10,8 +10,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const panier = JSON.parse(urlParams.get("panier"));
-    const taxes = 0.15;
-    console.log("panier");
+    const Taxes = 0.15;
     panier.forEach(function (item) {
       console.log("item:", item);
       console.log("item:", item.imageFond);
@@ -55,7 +54,7 @@
         <hr />
         <div class="checkout-price-wrapper">
           <p>Taxes :</p>
-          <p class="checkout-discounted-price">${item.prix*taxes}</p>
+          <p class="checkout-discounted-price">${item.prix * Taxes}</p>
         </div>
         <hr />
         <div class="checkout-price-wrapper">
