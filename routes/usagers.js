@@ -50,7 +50,7 @@ router.post("/ajouter", estAdmin, (requete, reponse) => {
   const { nom, login, password, password2, admin, vendeur } = requete.body;
   console.log(requete.body);
   let errors = [];
-  let roles = ["normal"];
+  let roles = ["client"];
   if (admin === "on") roles.push("admin");
   if (vendeur === "on") roles.push("vendeur");
 
