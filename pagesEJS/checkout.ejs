@@ -10,6 +10,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const panier = JSON.parse(urlParams.get("panier"));
+    const taxes = 0.15;
     console.log("panier");
     panier.forEach(function (item) {
       console.log("item:", item);
@@ -41,14 +42,27 @@
             <h4>${item.nom}</h4>
             <div class="checkout-card-price-container">
               <p class="checkout-discounted-price" style="margin: 10px 0">
-                ${item.prix}
-              </p>
-              <p class="checkout-original-price" style="margin: 10px 0">
-                ${item.prix}
+                
               </p>
             </div>
           </div>
         </div>
+        <div class="checkout-price-breakdown-wrapper">
+        <div class="checkout-price-wrapper">
+          <p>Subtotal :</p>
+          <p class="checkout-discounted-price">${item.prix}</p>
+        </div>
+        <hr />
+        <div class="checkout-price-wrapper">
+          <p>Taxes :</p>
+          <p class="checkout-discounted-price">${item.prix*taxes}</p>
+        </div>
+        <hr />
+        <div class="checkout-price-wrapper">
+          <p>Total:</p>
+          <p class="checkout-discounted-price">${item.prix}</p>
+        </div>
+      </div>
       `;
       // Append the new element to the checkout-card-product div
       document.querySelector(".checkout-card-product").appendChild(newElement);
@@ -62,7 +76,6 @@
       <div class="text-center"></div>
       <form>
         <div>
-          <h1 style="font-weight: bold">Checkout</h1>
           <h1 style="font-weight: bold">Checkout</h1>
           <div>
             <input
@@ -117,55 +130,8 @@
       <div class="card checkout-card">
         <div class="card-body checkout-card-product">
           <div class="card checkout-card-product-single">
-            <div
-              class="card-body"
-              style="border-radius: 25px; background: grey"
-            >
-              <div style="display: flex">
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 15px;
-                  "
-                ></div>
-                <img
-                  class="checkout-product-image"
-                  src="https://www.gamespot.com/a/uploads/original/1568/15683559/3204902-1080_ti_key_visual_v1_1488313851.jpg"
-                  alt="image produit"
-                />
-                <div style="padding-left: 40px">
-                  <h4>3080 TI</h4>
-                  <div class="checkout-card-price-container">
-                    <p class="checkout-discounted-price" style="margin: 10px 0">
-                      350$
-                    </p>
-                    <p class="checkout-original-price" style="margin: 10px 0">
-                      450$
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="checkout-price-breakdown-wrapper">
-        <div class="checkout-price-wrapper">
-          <p>Subtotal :</p>
-          <p class="checkout-discounted-price">1150$</p>
-        </div>
-        <hr />
-        <div class="checkout-price-wrapper">
-          <p>Taxes :</p>
-          <p class="checkout-discounted-price">100$</p>
-        </div>
-        <hr />
-        <div class="checkout-price-wrapper">
-          <p>Total:</p>
-          <p class="checkout-discounted-price">1250$</p>
         </div>
       </div>
     </div>
