@@ -11,9 +11,9 @@ const upload = multer({ dest: "./uploads/" });
 const path = require("path");
 const { Configuration, OpenAIApi } = require("openai");
 
-// Configurez OpenAI avec votre clé API directement dans le code
+// Configure OpenAI with your API key from the environment variable
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openaiApi = new OpenAIApi(configuration);
 
