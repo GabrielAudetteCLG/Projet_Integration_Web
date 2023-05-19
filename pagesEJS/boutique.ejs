@@ -53,7 +53,13 @@
     </div>
   </div>
   <% articles.forEach(function(article) { %>
-  <div class="container boutique-article-container">
+  <div
+    class="container boutique-article-container"
+    style="
+      background: #000 center/cover url('/images/<%= article.imageFond %>')
+        no-repeat;
+    "
+  >
     <div class="container">
       <div class="product-wrapper">
         <h1><%= article.nom %></h1>
@@ -64,7 +70,7 @@
         </ul>
         <div class="button" id="button">
           <div id="slide"></div>
-          <a href="/#" id="ajout">J'achète</a>
+          <a href="#" id="ajout">J'achète</a>
         </div>
       </div>
     </div>
@@ -85,7 +91,7 @@
       nom: parent_button.parentNode.querySelector("h1").innerHTML,
       details: parent_button.parentNode.querySelector("li").innerHTML,
       prix: parent_button.parentNode.querySelector("p").innerHTML,
-      imageFond: bgImage,
+      imageFond: bgImage.slice(5, -1),
     };
     panier.push(article);
 

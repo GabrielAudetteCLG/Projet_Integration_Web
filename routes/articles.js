@@ -58,32 +58,34 @@ router.get("/editer/:_id", estVendeur, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-// Route pour traiter la soumission du formulaire de modification d'un article
+// Route pour traiter la soumission du formulaire de modification d'un article (Gabriel)
+
 router.post("/editer", estVendeur, (req, res) => {
   const { nom, marque, prix, details } = req.body;
 
   const file = req.files ? req.files[0] : null; // Vérifier si req.files contient des éléments
   console.log(file);
   if (file) {
-    const { originalname, destination, filename, size, path, mimetype } = file;
-    const maxFileSize = 1024 * 10;
+    const { originalname, destination, filename, size, path, mimetype } =
+      req.files[0];
+    const maxFileSize = 1024 * 1000;
     const mimetypePermis = [
       "image/png",
       "image/jpg",
       "image/jpeg",
       "image/gif",
       "image/webp",
-      "css",
     ];
     let errors = [];
+    if (!nom || !marque || !prix || !details) {
+      errors.push({ msg: "Remplir toutes les cases du formulaire" });
+    }
     if (size > maxFileSize) {
       errors.push({
         msg: `La taille du fichier est trop grande (max ${maxFileSize} octets)`,
       });
-    } else {
-      if (!mimetypePermis.includes(mimetype)) {
-        errors.push({ msg: "Format de fichier non accepté" });
-      }
+    } else if (!mimetypePermis.includes(mimetype)) {
+      errors.push({ msg: "Format de fichier non accepté" });
     }
 
     if (errors.length > 0) {
@@ -95,30 +97,99 @@ router.post("/editer", estVendeur, (req, res) => {
         prix,
         details,
         titre: "Modification d'un article",
+        image: filename,
       });
-      return; // Terminer la fonction ici pour éviter l'erreur suivante causée par 'path' qui est indéfini
+      return;
+    } else {
+      Articles.findOneAndUpdate(
+        { nom: nom },
+        {
+          nom,
+          imageFond: file ? conserverFichier(path, filename) : null, // Vérifier si file est défini avant de déstructurer ses propriétés
+          marque,
+          prix,
+          details,
+        },
+        { new: true }
+      )
+        .then((article) => {
+          req.flash("success_msg", "L'article a été modifié avec succès");
+          res.redirect("/articles/menu");
+        })
+        .catch((err) => console.log(err));
     }
+  } else {
+    req.flash("error_msg", "Veuillez sélectionner une image");
+    res.redirect("/articles/editer");
+    return;
   }
-
-  Articles.findOneAndUpdate(
-    { nom: nom },
-    {
-      nom,
-      imageFond: file ? conserverFichier(path, filename) : null, // Vérifier si file est défini avant de déstructurer ses propriétés
-      marque,
-      prix,
-      details,
-    },
-    { new: true }
-  )
-    .then((article) => {
-      req.flash("success_msg", "L'article a été modifié avec succès");
-      res.redirect("/articles/menu");
-    })
-    .catch((err) => console.log(err));
 
   console.log("req.body :", req.body);
 });
+
+// -------------------------------------------------------------------------------------------------
+
+// // Route pour traiter la soumission du formulaire de modification d'un article
+// router.post("/editer", estVendeur, (req, res) => {
+//   const { nom, marque, prix, details } = req.body;
+
+//   const file = req.files ? req.files[0] : null; // Vérifier si req.files contient des éléments
+
+//   if (file) {
+//     const { originalname, destination, filename, size, path, mimetype } = file;
+//     const maxFileSize = 1024 * 10;
+//     const mimetypePermis = [
+//       "image/png",
+//       "image/jpg",
+//       "image/jpeg",
+//       "image/gif",
+//       "image/webp",
+//       "css",
+//     ];
+//     let errors = [];
+//     if (size > maxFileSize) {
+//       errors.push({
+//         msg: `La taille du fichier est trop grande (max ${maxFileSize} octets)`,
+//       });
+//     } else {
+//       if (!mimetypePermis.includes(mimetype)) {
+//         errors.push({ msg: "Format de fichier non accepté" });
+//       }
+//     }
+
+//     if (errors.length > 0) {
+//       supprimerFichier(path);
+//       res.render("articles", {
+//         errors,
+//         nom,
+//         marque,
+//         prix,
+//         details,
+//         titre: "Modification d'un article",
+//       });
+//       return; // Terminer la fonction ici pour éviter l'erreur suivante causée par 'path' qui est indéfini
+//     }
+//   }
+
+//   Articles.findOneAndUpdate(
+//     { nom: nom },
+//     {
+//       nom,
+//       imageFond: file ? conserverFichier(path, filename) : null, // Vérifier si file est défini avant de déstructurer ses propriétés
+//       marque,
+//       prix,
+//       details,
+//     },
+//     { new: true }
+//   )
+//     .then((article) => {
+//       req.flash("success_msg", "L'article a été modifié avec succès");
+//       res.redirect("/articles/menu");
+//     })
+//     .catch((err) => console.log(err));
+
+//   console.log("req.body :", req.body);
+// });
 
 // Route pour afficher le formulaire d'ajout d'un article
 router.get("/ajouter", estVendeur, (req, res) => {

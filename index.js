@@ -7,7 +7,8 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
 const multer = require("multer");
-const upload = multer({ dest: "./uploads/" });
+const upload = multer({ dest: "./uplo ads/" });
+const path = require("path");
 const { Configuration, OpenAIApi } = require("openai");
 
 // Configurez OpenAI avec votre clé API directement dans le code
@@ -15,9 +16,6 @@ const configuration = new Configuration({
   apiKey: "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",
 });
 const openaiApi = new OpenAIApi(configuration);
-
-// Middleware pour servir les fichiers statiques
-app.use(express.static("public"));
 
 // Route pour gérer les requêtes de chatbot
 app.post("/chatbot", express.json(), async (req, res) => {
@@ -104,11 +102,11 @@ app.get("/", (req, res) => {
 app.use("/css", express.static("./css"));
 app.use("/js", express.static("./js"));
 app.use("/images", express.static("./images"));
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
 // Les routes
 app.use("/", require("./routes/index"));
 app.use("/usagers", require("./routes/usagers"));
-//app.use("/livres", require("./routes/livres"));
 app.use("/articles", require("./routes/articles"));
 
 // Les vues

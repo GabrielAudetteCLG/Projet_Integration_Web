@@ -136,7 +136,7 @@
   margin: 0 100px 0 100px;
 } */
 .boutique-article-container {
-  background: #000 center/cover url("../images/Boutique_3060.png") no-repeat;
+  /* background: #000 center/cover url("../images/Boutique_3060.png") no-repeat; */
   height: 100vh;
   display: flex;
   align-items: center;
@@ -465,7 +465,6 @@ body {
 
 /* Page Login */
 .login-button {
-  background-color: #0d6efd;
   border-radius: 15px;
   border: none;
   color: white;
@@ -473,7 +472,7 @@ body {
 }
 .login-button:hover {
   transition: all 0.5s ease-in-out;
-  background-color: #0b5ed7;
+  background-color: var(--green) !important;
 }
 .btn {
   margin: 10px 0 10px 0;
@@ -651,6 +650,9 @@ body {
 .dropdown-toggle {
   background: transparent;
   border: none;
+}
+.dropdown-toggle > a {
+  color: var(--green);
 }
 .dropdown-menu {
   background-color: #000000;
