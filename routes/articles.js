@@ -63,7 +63,7 @@ router.post("/editer", estVendeur, (req, res) => {
   const { nom, marque, prix, details } = req.body;
 
   const file = req.files ? req.files[0] : null; // Vérifier si req.files contient des éléments
-
+  console.log(file);
   if (file) {
     const { originalname, destination, filename, size, path, mimetype } = file;
     const maxFileSize = 1024 * 10;
@@ -125,10 +125,6 @@ router.get("/ajouter", estVendeur, (req, res) => {
   res.render("articlesAjouter", { titre: "Ajouter un produit" });
 });
 
-// Route pour afficher le formulaire d'ajout d'un article
-router.get("/ajouter", estVendeur, (req, res) => {
-  res.render("articlesAjouter", { titre: "Ajouter un produit" });
-});
 
 router.post("/ajouter", estVendeur, (requete, reponse) => {
   const { nom, marque, prix, details } = requete.body;
