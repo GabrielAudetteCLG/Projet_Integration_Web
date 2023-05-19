@@ -95,7 +95,7 @@
         </ul>
         <div class="button" id="button">
           <div id="slide"></div>
-          <a href="#" id="ajout">J'achète</a>
+          <a href="#" class="ajout">J'achète</a>
         </div>
       </div>
     </div>
@@ -103,6 +103,60 @@
   <% }); %>
 </main>
 <script>
+  const panier = [];
+
+  document.querySelectorAll(".ajout").forEach((ajout) => {
+    ajout.addEventListener("click", function (e) {
+      e.preventDefault();
+      const parent_button = ajout.parentElement;
+      const bg = parent_button.closest(".boutique-article-container");
+      const bgStyles = window.getComputedStyle(bg);
+      const bgImage = bgStyles.backgroundImage;
+
+      const article = {
+        nom: parent_button.parentNode.querySelector("h1").innerHTML,
+        details: parent_button.parentNode.querySelector("li").innerHTML,
+        prix: parent_button.parentNode.querySelector("p").innerHTML,
+        imageFond: bgImage.slice(5, -1),
+      };
+
+      panier.push(article);
+
+      // Send the panier variable to the server using AJAX
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/checkout");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify({ panier: panier }));
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          window.location.href = "/checkout?panier=" + JSON.stringify(panier);
+        }
+      };
+    });
+  });
+
+  document.querySelectorAll(".hover-dropdown").forEach((button) => {
+    const menu = button.nextElementSibling;
+
+    button.addEventListener("mouseenter", () => {
+      menu.style.display = "block";
+    });
+
+    button.addEventListener("mouseleave", (e) => {
+      setTimeout(() => {
+        if (!menu.matches(":hover")) {
+          menu.style.display = "none";
+        }
+      }, 300);
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      menu.style.display = "none";
+    });
+  });
+</script>
+<!-- <script>
   // const articles = JSON.parse('<%- JSON.stringify(articles, (key, value) => typeof value === "string" ? value.replace(/'/g, "\\'") : value) %>');
   const ajout = document.getElementById("ajout");
   const parent_button = document.getElementById("button");
@@ -196,9 +250,9 @@
   //         <p>${article.prix}</p>
   //       </ul>
   //       <!-- ... -->
-  //     `;
+<!-- //     `; -->
 
-  //     boutiqueArticleContainer.appendChild(articleElement);
+<!-- //     boutiqueArticleContainer.appendChild(articleElement);
   //   });
   // }
 
@@ -243,4 +297,4 @@
       menu.style.display = "none";
     });
   });
-</script>
+</script> -->
