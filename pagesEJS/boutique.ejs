@@ -111,96 +111,96 @@
   const bgImage = bgStyles.backgroundImage;
   const panier = [];
 
-  const searchBar = document.getElementById("searchBar");
-  const filterPriceHighToLow = document.getElementById("filterPriceHighToLow");
-  const filterPriceLowToHigh = document.getElementById("filterPriceLowToHigh");
-  console.log("articles 119", articles);
+  // const searchBar = document.getElementById("searchBar");
+  // const filterPriceHighToLow = document.getElementById("filterPriceHighToLow");
+  // const filterPriceLowToHigh = document.getElementById("filterPriceLowToHigh");
+  // console.log("articles 119", articles);
 
-  // Brand filters
-  const brandFilters = [
-    "brandASUS",
-    "brandNVIDIA",
-    // ...
-  ].map((id) => document.getElementById(id));
+  // // Brand filters
+  // const brandFilters = [
+  //   "brandASUS",
+  //   "brandNVIDIA",
+  //   // ...
+  // ].map((id) => document.getElementById(id));
 
-  searchBar.addEventListener("input", updateFilteredArticles);
-  filterPriceHighToLow.addEventListener("click", updateFilteredArticles);
-  filterPriceLowToHigh.addEventListener("click", updateFilteredArticles);
-  brandFilters.forEach((filter) =>
-    filter.addEventListener("click", updateFilteredArticles)
-  );
+  // searchBar.addEventListener("input", updateFilteredArticles);
+  // filterPriceHighToLow.addEventListener("click", updateFilteredArticles);
+  // filterPriceLowToHigh.addEventListener("click", updateFilteredArticles);
+  // brandFilters.forEach((filter) =>
+  //   filter.addEventListener("click", updateFilteredArticles)
+  // );
 
-  let filteredArticles = articles;
+  // let filteredArticles = articles;
 
-  function updateFilteredArticles() {
-    const searchQuery = searchBar.value.toLowerCase();
-    const sortByPrice = filterPriceHighToLow.classList.contains("active")
-      ? "highToLow"
-      : filterPriceLowToHigh.classList.contains("active")
-      ? "lowToHigh"
-      : null;
-    const selectedBrand = brandFilters.find((filter) =>
-      filter.classList.contains("active")
-    );
+  // function updateFilteredArticles() {
+  //   const searchQuery = searchBar.value.toLowerCase();
+  //   const sortByPrice = filterPriceHighToLow.classList.contains("active")
+  //     ? "highToLow"
+  //     : filterPriceLowToHigh.classList.contains("active")
+  //     ? "lowToHigh"
+  //     : null;
+  //   const selectedBrand = brandFilters.find((filter) =>
+  //     filter.classList.contains("active")
+  //   );
 
-    filteredArticles = articles.filter((article) => {
-      // Filter by search query
-      if (
-        searchQuery &&
-        !article.nom.toLowerCase().includes(searchQuery) &&
-        !article.details.toLowerCase().includes(searchQuery)
-      ) {
-        return false;
-      }
+  //   filteredArticles = articles.filter((article) => {
+  //     // Filter by search query
+  //     if (
+  //       searchQuery &&
+  //       !article.nom.toLowerCase().includes(searchQuery) &&
+  //       !article.details.toLowerCase().includes(searchQuery)
+  //     ) {
+  //       return false;
+  //     }
 
-      // Filter by brand
-      if (
-        selectedBrand &&
-        article.marque.toLowerCase() !== selectedBrand.textContent.toLowerCase()
-      ) {
-        return false;
-      }
+  //     // Filter by brand
+  //     if (
+  //       selectedBrand &&
+  //       article.marque.toLowerCase() !== selectedBrand.textContent.toLowerCase()
+  //     ) {
+  //       return false;
+  //     }
 
-      return true;
-    });
+  //     return true;
+  //   });
 
-    // Sort by price
-    if (sortByPrice === "highToLow") {
-      filteredArticles.sort((a, b) => b.prix - a.prix);
-    } else if (sortByPrice === "lowToHigh") {
-      filteredArticles.sort((a, b) => a.prix - b.prix);
-    }
+  //   // Sort by price
+  //   if (sortByPrice === "highToLow") {
+  //     filteredArticles.sort((a, b) => b.prix - a.prix);
+  //   } else if (sortByPrice === "lowToHigh") {
+  //     filteredArticles.sort((a, b) => a.prix - b.prix);
+  //   }
 
-    displayFilteredArticles();
-  }
+  //   displayFilteredArticles();
+  // }
 
-  function displayFilteredArticles() {
-    const boutiqueArticleContainer = document.querySelector(
-      ".boutique-article-container"
-    );
+  // function displayFilteredArticles() {
+  //   const boutiqueArticleContainer = document.querySelector(
+  //     ".boutique-article-container"
+  //   );
 
-    // Remove existing article elements
-    while (boutiqueArticleContainer.firstChild) {
-      boutiqueArticleContainer.removeChild(boutiqueArticleContainer.firstChild);
-    }
+  //   // Remove existing article elements
+  //   while (boutiqueArticleContainer.firstChild) {
+  //     boutiqueArticleContainer.removeChild(boutiqueArticleContainer.firstChild);
+  //   }
 
-    // Create new article elements based on filteredArticles
-    filteredArticles.forEach((article) => {
-      // Create your article element here, similar to what you have in your EJS template
-      // For example:
-      const articleElement = document.createElement("div");
-      articleElement.innerHTML = `
-        <h1>${article.nom}</h1>
-        <ul class="product-text">
-          <li>${article.details}</li>
-          <p>${article.prix}</p>
-        </ul>
-        <!-- ... -->
-      `;
+  //   // Create new article elements based on filteredArticles
+  //   filteredArticles.forEach((article) => {
+  //     // Create your article element here, similar to what you have in your EJS template
+  //     // For example:
+  //     const articleElement = document.createElement("div");
+  //     articleElement.innerHTML = `
+  //       <h1>${article.nom}</h1>
+  //       <ul class="product-text">
+  //         <li>${article.details}</li>
+  //         <p>${article.prix}</p>
+  //       </ul>
+  //       <!-- ... -->
+  //     `;
 
-      boutiqueArticleContainer.appendChild(articleElement);
-    });
-  }
+  //     boutiqueArticleContainer.appendChild(articleElement);
+  //   });
+  // }
 
   ajout.addEventListener("click", function (e) {
     e.preventDefault();
