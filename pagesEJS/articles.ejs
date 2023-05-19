@@ -5,21 +5,13 @@
     <% articles.forEach(function(article) { %>
     <div class="col mb-5">
       <div class="card style-cards liste-article-card-body-style">
-        <!--<div class="card-img-top" style="background-image: url('<%= article.imageFond %>')"></div>-->
         <div class="card-body liste-article-card-body">
           <h5 class="card-title" style="text-align: center; color: white">
             <%= article.nom %>
           </h5>
-          <!--<img
-            src="<%= article.image %>"
-            class="card-img-top ajouter-article-card-img"
-            alt="Image de <%= article.nom %>"
-          />-->
           <p class="card-price" style="text-align: center; color: white">
             <strong><%= article.prix %> $</strong>
           </p>
-          <h5 class="card-title text-center"><%= article.nom %></h5>
-          <!--<img src="/images/<%= article.imageFond %>" class="card-img-top" alt="Image de <%= article.nom %>" style="width: 100%; max-height: 200px; object-fit: cover" />-->
 
           <% if (admin) { %>
           <div class="card-buttons d-flex justify-content-around">

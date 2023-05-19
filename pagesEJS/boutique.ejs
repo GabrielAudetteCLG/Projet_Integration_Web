@@ -8,6 +8,7 @@
             type="search"
             placeholder="Recherche"
             aria-label="Recherche"
+            id="searchBar"
           />
           <button class="btn btn-outline-success" type="submit">
             <i class="fas fa-search"></i>
@@ -17,7 +18,7 @@
       <div class="col-md-4">
         <div class="dropdown">
           <button
-            class="btn btn-outline-secondary dropdown-toggle barre-de-recherche btn-outline-success"
+            class="btn btn-outline-secondary dropdown-toggle barre-de-recherche btn-outline-success hover-dropdown"
             type="button"
             id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
@@ -26,27 +27,51 @@
             <i class="fas fa-filter"></i>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Option 1</a></li>
-            <li><a class="dropdown-item" href="#">Option 2</a></li>
-            <li><a class="dropdown-item" href="#">Option 3</a></li>
+            <li>
+              <a class="dropdown-item" href="#" id="filterPriceHighToLow"
+                >Trier par prix - Haut à Bas</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" id="filterPriceLowToHigh"
+                >Trier par prix - Bas à Haut</a
+              >
+            </li>
           </ul>
         </div>
       </div>
       <div class="col-md-4">
         <div class="dropdown">
           <button
-            class="btn btn-outline-secondary dropdown-toggle barre-de-recherche btn-outline-success"
+            class="btn btn-outline-secondary dropdown-toggle barre-de-recherche btn-outline-success hover-dropdown"
             type="button"
             id="dropdownMenuButton2"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="bi bi-list-ul"></i> Catégorie
+            <i class="bi bi-list-ul"></i> Marque
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-            <li><a class="dropdown-item" href="#">Catégorie 1</a></li>
-            <li><a class="dropdown-item" href="#">Catégorie 2</a></li>
-            <li><a class="dropdown-item" href="#">Catégorie 3</a></li>
+            <li><a class="dropdown-item" href="#" id="brandASUS">ASUS</a></li>
+            <li>
+              <a class="dropdown-item" href="#" id="brandNVIDIA">NVIDIA</a>
+            </li>
+            <li><a class="dropdown-item" href="#" id="brandAMD">AMD</a></li>
+            <li>
+              <a class="dropdown-item" href="#" id="brandGIGABYTE">GIGABYTE</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" id="brandPowerColor"
+                >PowerColor (TUL)</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" id="brandSapphire">Sapphire</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" id="brandLeadTek">LeadTek</a>
+            </li>
+            <li><a class="dropdown-item" href="#" id="brandHIS">HIS</a></li>
           </ul>
         </div>
       </div>
@@ -63,7 +88,7 @@
     <div class="container">
       <div class="product-wrapper">
         <h1><%= article.nom %></h1>
-        <ul>
+        <ul class="product-text">
           <li><%= article.details %></li>
 
           <p><%= article.prix %></p>
@@ -78,12 +103,104 @@
   <% }); %>
 </main>
 <script>
+  // const articles = JSON.parse('<%- JSON.stringify(articles, (key, value) => typeof value === "string" ? value.replace(/'/g, "\\'") : value) %>');
   const ajout = document.getElementById("ajout");
   const parent_button = document.getElementById("button");
   const bg = document.getElementsByClassName("boutique-article-container")[0];
   const bgStyles = window.getComputedStyle(bg);
   const bgImage = bgStyles.backgroundImage;
   const panier = [];
+
+  const searchBar = document.getElementById("searchBar");
+  const filterPriceHighToLow = document.getElementById("filterPriceHighToLow");
+  const filterPriceLowToHigh = document.getElementById("filterPriceLowToHigh");
+  console.log("articles 119", articles);
+
+  // Brand filters
+  const brandFilters = [
+    "brandASUS",
+    "brandNVIDIA",
+    // ...
+  ].map((id) => document.getElementById(id));
+
+  searchBar.addEventListener("input", updateFilteredArticles);
+  filterPriceHighToLow.addEventListener("click", updateFilteredArticles);
+  filterPriceLowToHigh.addEventListener("click", updateFilteredArticles);
+  brandFilters.forEach((filter) =>
+    filter.addEventListener("click", updateFilteredArticles)
+  );
+
+  let filteredArticles = articles;
+
+  function updateFilteredArticles() {
+    const searchQuery = searchBar.value.toLowerCase();
+    const sortByPrice = filterPriceHighToLow.classList.contains("active")
+      ? "highToLow"
+      : filterPriceLowToHigh.classList.contains("active")
+      ? "lowToHigh"
+      : null;
+    const selectedBrand = brandFilters.find((filter) =>
+      filter.classList.contains("active")
+    );
+
+    filteredArticles = articles.filter((article) => {
+      // Filter by search query
+      if (
+        searchQuery &&
+        !article.nom.toLowerCase().includes(searchQuery) &&
+        !article.details.toLowerCase().includes(searchQuery)
+      ) {
+        return false;
+      }
+
+      // Filter by brand
+      if (
+        selectedBrand &&
+        article.marque.toLowerCase() !== selectedBrand.textContent.toLowerCase()
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+
+    // Sort by price
+    if (sortByPrice === "highToLow") {
+      filteredArticles.sort((a, b) => b.prix - a.prix);
+    } else if (sortByPrice === "lowToHigh") {
+      filteredArticles.sort((a, b) => a.prix - b.prix);
+    }
+
+    displayFilteredArticles();
+  }
+
+  function displayFilteredArticles() {
+    const boutiqueArticleContainer = document.querySelector(
+      ".boutique-article-container"
+    );
+
+    // Remove existing article elements
+    while (boutiqueArticleContainer.firstChild) {
+      boutiqueArticleContainer.removeChild(boutiqueArticleContainer.firstChild);
+    }
+
+    // Create new article elements based on filteredArticles
+    filteredArticles.forEach((article) => {
+      // Create your article element here, similar to what you have in your EJS template
+      // For example:
+      const articleElement = document.createElement("div");
+      articleElement.innerHTML = `
+        <h1>${article.nom}</h1>
+        <ul class="product-text">
+          <li>${article.details}</li>
+          <p>${article.prix}</p>
+        </ul>
+        <!-- ... -->
+      `;
+
+      boutiqueArticleContainer.appendChild(articleElement);
+    });
+  }
 
   ajout.addEventListener("click", function (e) {
     e.preventDefault();
@@ -106,5 +223,24 @@
         window.location.href = "/checkout?panier=" + JSON.stringify(panier);
       }
     };
+  });
+  document.querySelectorAll(".hover-dropdown").forEach((button) => {
+    const menu = button.nextElementSibling;
+
+    button.addEventListener("mouseenter", () => {
+      menu.style.display = "block";
+    });
+
+    button.addEventListener("mouseleave", (e) => {
+      setTimeout(() => {
+        if (!menu.matches(":hover")) {
+          menu.style.display = "none";
+        }
+      }, 300);
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      menu.style.display = "none";
+    });
   });
 </script>

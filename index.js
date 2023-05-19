@@ -7,7 +7,7 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
 const multer = require("multer");
-const upload = multer({ dest: "./uplo ads/" });
+const upload = multer({ dest: "./uploads/" });
 const path = require("path");
 const { Configuration, OpenAIApi } = require("openai");
 
