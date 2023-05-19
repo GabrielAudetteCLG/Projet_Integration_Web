@@ -478,11 +478,17 @@ body {
   margin: 10px 0 10px 0;
 }
 .menu-main {
-  height: 100vh;
+  height: 55vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.text-center_position {
+  height: 8vh;
+  margin-top: 4%;
+}
+
 .user-wrapper {
   margin: 10px 0 10px 0;
 }
